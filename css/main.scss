@@ -1255,6 +1255,11 @@ $baseurl: '{{ site.baseurl }}/images';
 			background-color: transparent;
 		}
 
+		&.style40 {
+			  background-color: transparent;
+			  height: 100vh;
+		}
+
 		&.style5 {
 			@include wrapper(accent7);
 		}
