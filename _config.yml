@@ -1,43 +1,64 @@
+# Site wide configuration
 
-# Setup
-title:               SGSC
-email:               sgsc@gateofsci.com
-tagline:             Science Gateway Software and Consultation
-url:                 "" # insert your site's URL
-baseurl:             ""
+title: "My Site"
+description: "This is a description of my awesome site."
+logo: # 120x120 px default image used for Twitter summary card
+teaser: # 400x250 px default teaser image used in image archive grid
+locale: en
+url:
+feed:
+  path: atom.xml
 
-# About/contact
-author: # you can edit these to be your personal details
-  name:              SGSC
-  url:               
-  email:             sgsc@gateofsci.com
+# Jekyll configuration
 
-# Google services
-google_verification:
-# Use either direct GA implementation or set up GTM account
-# - using both will skew your data (leave blank to not use at all)
-google_analytics:
-google_tag_manager:
-# Bing services
-bing_verification:
-
-# Social
-github_username: sciencegateway
-twitter_username: 
-instagram_username: 
-facebook: 
-linkedin_username: 
-dribbble_username: 
-
-# Custom vars
-version:    
-github:
-  repo:     
-
-# Gems - Dependencies for this theme
+sass:
+  sass_dir: _sass
+  style: compressed
+permalink: /:categories/:title/
+kramdown:
+  toc_levels: 1..2
+highlighter: rouge
 gems:
-  # None currently
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
 
-# Build settings
-markdown:     kramdown
-permalink:    pretty
+
+# Site owner
+owner:
+  name:
+  email:
+  twitter:
+  google:
+    ad-client:
+    ad-slot:
+  bio:
+  avatar: bio-photo.jpg # 160x160 px image for author byline
+  disqus-shortname:
+
+
+include:
+  - .htaccess
+exclude:
+  - "*.less"
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - CHANGELOG
+  - Capfile
+  - Gemfile
+  - Gruntfile.js
+  - LICENSE
+  - README
+  - Rakefile
+  - config
+  - gulpfile.js
+  - lib
+  - log
+  - node_modules
+  - package.json
+  - spec
+  - tmp
