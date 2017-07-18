@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Development of Statistical Software with A Case Study</title>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/serif.css" id="theme"/>
+
+<link rel="stylesheet" href="./presentation.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Development of Statistical Software with A Case Study</h1><h2 class="date">IFRIT, 2017</h2><p class="date">Created: 2017-07-18 Tue 21:09</p>
+</section>
+<div class="HTML">
+<p>
+\(
+   \newcommand{\uV} {{\bf V}}
+   \newcommand{\uv} {{\bf v}}
+   \newcommand{\ue} {{\bf e}}
+   \newcommand{\ualpha} {{\bf \alpha}}
+   \newcommand{\logit} {{logit}}
+   \newcommand{\uet} {{\bf w}}
+   \newcommand{\ueta} {{\eta}}
+   \newcommand{\utheta} {{\eta}}
+\)
+</p>
+
+</div>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org06672ad">
+<div class="slide-header"></div>
+<h3 id="org06672ad">Team</h3>
+<ul>
+<li>Zhong Wang</li>
+<li>Chenguang Wang <i>cwang@gateofsci.com</i></li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org991cea2">
+<div class="slide-header"></div>
+<h2 id="org991cea2">Introduction</h2>
+<div class="outline-text-2" id="text-org991cea2">
+</div><div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org861bce1">
+<div class="slide-header"></div>
+<h3 id="org861bce1">Guide to become a researcher</h3>
+<div class="outline-text-3" id="text-org861bce1">
+</div><div class="slide-footer"></div>
+</section>
+<section id="slide-orgbf1a127">
+<div class="slide-header"></div>
+<h4 id="orgbf1a127"></h4>
+
+<div class="figure">
+<p><img src="pp_2.png" alt="pp_2.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgadd5125">
+<div class="slide-header"></div>
+<h4 id="orgadd5125"></h4>
+
+<div class="figure">
+<p><img src="pp_3.png" alt="pp_3.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgcc6e766">
+<div class="slide-header"></div>
+<h4 id="orgcc6e766"></h4>
+
+<div class="figure">
+<p><img src="pp_4.png" alt="pp_4.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org509444a">
+<div class="slide-header"></div>
+<h4 id="org509444a"></h4>
+
+<div class="figure">
+<p><img src="pp_5.png" alt="pp_5.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org4f86e9e">
+<div class="slide-header"></div>
+<h4 id="org4f86e9e"></h4>
+
+<div class="figure">
+<p><img src="pp_6.png" alt="pp_6.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgd6fa4b9">
+<div class="slide-header"></div>
+<h4 id="orgd6fa4b9"></h4>
+
+<div class="figure">
+<p><img src="pp_7.png" alt="pp_7.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orge48eb73">
+<div class="slide-header"></div>
+<h4 id="orge48eb73"></h4>
+
+<div class="figure">
+<p><img src="pp_8.png" alt="pp_8.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org34fd749">
+<div class="slide-header"></div>
+<h4 id="org34fd749"></h4>
+
+<div class="figure">
+<p><img src="pp_9.png" alt="pp_9.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgf3b9573">
+<div class="slide-header"></div>
+<h4 id="orgf3b9573"></h4>
+
+<div class="figure">
+<p><img src="pp_10.png" alt="pp_10.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org25a720a">
+<div class="slide-header"></div>
+<h4 id="org25a720a"></h4>
+
+<div class="figure">
+<p><img src="pp_11.png" alt="pp_11.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org821909d">
+<div class="slide-header"></div>
+<h3 id="org821909d">Steps of applied research</h3>
+<ul>
+<li>Identify a problem</li>
+<li>Hypothesis</li>
+<li>Simulation studies</li>
+<li>Conclusion</li>
+<li>Applications</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orga16f339">
+<div class="slide-header"></div>
+<h3 id="orga16f339">Typical product</h3>
+
+<div class="figure">
+<p><img src="product.png" alt="product.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgd913134">
+<div class="slide-header"></div>
+<h3 id="orgd913134">Challenges</h3>
+<ul>
+<li>Difficult to understand the algorithm</li>
+<li>Difficult to understand the command line mode</li>
+<li>Platform dependent</li>
+<li>Rely on legacy system</li>
+<li>&#x2026;</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org346df2c">
+<div class="slide-header"></div>
+<h3 id="org346df2c">Motivation</h3>
+<p>
+We believe that scientists' pioneering achievements can be better delivered
+to <i>people</i> by user-friendly, customizable and extensible <i>software</i>.
+</p>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgce7760f">
+<div class="slide-header"></div>
+<h3 id="orgce7760f">Overall scheme</h3>
+
+<div class="figure">
+<p><img src="sgsc.png" alt="sgsc.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org8c79b70">
+<div class="slide-header"></div>
+<h2 id="org8c79b70">Case Study: Background</h2>
+<div class="outline-text-2" id="text-org8c79b70">
+</div><div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgd998896">
+<div class="slide-header"></div>
+<h3 id="orgd998896">Motivation</h3>
+<ul>
+<li>Consider a <i>randomized</i> clinical study</li>
+<li>Outcomes scheduled to be measured at pre-specified time points after
+randomization</li>
+<li><i>Goal</i>: To evaluate the efficacy of a treatment</li>
+<li><i>Issue</i>: Clinical evaluations <i>unobserved</i> due to
+<ul>
+<li>lost to follow up</li>
+<li>withdraw of consent</li>
+<li>out-of-window visit</li>
+<li><i>death</i></li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org26db0b2">
+<div class="slide-header"></div>
+<h3 id="org26db0b2">Notation</h3>
+<ul>
+<li>\(T=0,1\): treatment assignment</li>
+<li>\(Y_0\): baseline measure at \(t_0\)</li>
+<li>\(Y_1, \ldots, Y_K\): post-randomization outcomes at \(t_1, \ldots, t_K\)</li>
+<li>\(L\): survival time</li>
+<li>\(A_k=I(L>t_k)\): survival status at \(t_k\)</li>
+<li>\(Z=g(Y_0,\ldots,Y_K)\): primary functional endpoint
+<ul>
+<li>e.g. \(Z=Y_K\), \(Z=Y_K-Y_0\)</li>
+<li>only defined when \(A_K=1\)</li>
+
+</ul></li>
+<li>For subjects alive at the end of the study (\(A_K=1\))
+<ul>
+<li>\(\tau_k\): missingness indicator of \(Y_k\) (1: observed, 0: missing)</li>
+<li>\(S=(\tau_1, \ldots, \tau_K)\): missing pattern</li>
+<li>\(Y_{obs}=\{Y_k: \tau_k=1, k \geq 1\}\): observed functional outcome</li>
+<li>\(Y_{mis}=\{Y_k: \tau_k=0, k \geq 1\}\): missing functional outcome</li>
+
+</ul></li>
+<li>\(X\): baseline covariates</li>
+<li>\(\overline{Y}_k\): \((Y_1,\ldots,Y_k)\)</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org3da65f5">
+<div class="slide-header"></div>
+<h3 id="org3da65f5">Issues</h3>
+<ul>
+<li>Missing data</li>
+<li>Death</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org1c637b3">
+<div class="slide-header"></div>
+<h3 id="org1c637b3">Proposal</h3>
+
+<div class="figure">
+<p><img src="subjects.png" alt="subjects.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgcfe5119">
+<div class="slide-header"></div>
+<h3 id="orgcfe5119">Steps</h3>
+<div class="outline-text-3" id="text-orgcfe5119">
+</div><div class="slide-footer"></div>
+</section>
+<section id="slide-orgad12019">
+<div class="slide-header"></div>
+<h4 id="orgad12019">Imputation</h4>
+<ul>
+<li>Impute missing data for survivors</li>
+<li>Benchmark assumption 
+\[f(Y_{mis} | A_K=1,Y_{obs}, Y_0, X, T,S=s) = f(Y_{mis} | A_K=1,
+       Y_{obs}, Y_0, X, T, S=\mathbf{1}) \qquad \forall s \neq \mathbf{1} \]</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orge58d1a1">
+<div class="slide-header"></div>
+<h4 id="orge58d1a1">Rank all subjects</h4>
+<ul>
+<li>Both alive 
+<ul>
+<li>\(Z_i > Z_j\): subject \(i\) ranked better than subject \(j\)</li>
+<li>\(Z_i=Z_j\): subjects \(i\) and \(j\) ranked the same</li>
+
+</ul></li>
+<li>Both dead 
+<ul>
+<li>\(L_i > L_j\): subject \(i\) ranked better than subject \(j\)</li>
+<li>\(L_i=L_j\): subjects \(i\) and \(j\) ranked the same</li>
+
+</ul></li>
+<li>Alive + Dead
+<ul>
+<li>subject alive ranked better than subject dead</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orge3c3b50">
+<div class="slide-header"></div>
+<h4 id="orge3c3b50">Statistical inference</h4>
+<ul>
+<li>Based on the parameter 
+\[\theta = P(U_i < U_j) - P(U_i > U_j) \]</li>
+<li>Hypothesis testing</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org2cefb97">
+<div class="slide-header"></div>
+<h4 id="org2cefb97">Sensitivity analysis</h4>
+<ul>
+<li>Benchmark assumptions (CCMV) <i>untestable</i></li>
+<li><i>Sensitivity analysis</i> essential to evaluate the robustness of
+inferences to deviations from benchmark assumptions</li>
+<li>Assumptions      
+\[f(Y_{mis} | A_K=1,  Y_{obs}, Y_0, X, T=t,S=s)   \propto  \exp \{\beta_{t} Z\} f(Y_{mis} | A_K=1, Y_{obs}, Y_0, X, T=t, S=\mathbf{1})\]</li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org87f3731">
+<div class="slide-header"></div>
+<h3 id="org87f3731">Simulation Study</h3>
+<ul>
+<li>Conduct simulation study to evaluate 
+<ul>
+<li>if the sensitivity analysis strategy works</li>
+<li>how the deaths and missing data affect the final conclusions</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgd6d449b">
+<div class="slide-header"></div>
+<h3 id="orgd6d449b">Application</h3>
+<ul>
+<li>Apply the proposed method to a Phase III cancer drug clinical study submitted the FDA</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org5d3572a">
+<div class="slide-header"></div>
+<h3 id="org5d3572a">Product</h3>
+
+<div class="figure">
+<p><img src="biometrics.png" alt="biometrics.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org134b3f5">
+<div class="slide-header"></div>
+<h2 id="org134b3f5">Case Study: Component Software</h2>
+<div class="outline-text-2" id="text-org134b3f5">
+</div><div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org32345a9">
+<div class="slide-header"></div>
+<h3 id="org32345a9">Raw code</h3>
+<div class="outline-text-3" id="text-org32345a9">
+</div><div class="slide-footer"></div>
+</section>
+<section id="slide-orgd74ab10">
+<div class="slide-header"></div>
+<h4 id="orgd74ab10">R code</h4>
+<div class="org-src-container">
+
+<pre><code class="R" >##table of missing pattern
+get.mis.table <- function(data.all, duration, vtrt, vsurv, voutcome, trt.len=NULL) {
+    a.trt    <- get.trt(data.all[,vtrt]);
+    mis.pat  <- get.miss.pattern(length(voutcome));
+
+    if (is.null(trt.len)) {
+        trt.len <- paste(toupper(vtrt), "=", a.trt, sep="");
+    }
+
+    rst <- NULL;
+    for (i in 1:length(a.trt)) {
+        subg      <- data.all[which(a.trt[i] == data.all[,vtrt]),
+                              c(vsurv, voutcome)];
+        nsub      <- nrow(subg);
+        cur.alive <- subg[which(subg[,vsurv] > duration),voutcome];
+        n.dead    <- nsub-nrow(cur.alive);
+
+        cur.y <- !is.na(cur.alive);
+        inx.y <- table(1+get.compose(cur.y));
+
+        n.p               <- rep(0, nrow(mis.pat));
+        names(n.p)        <- rownames(mis.pat);
+        n.p[names(inx.y)] <- inx.y;
+
+        char.rst <- sapply( c(n.dead, n.p), function(x) { sprintf("%i(%5.2f%%)", x, 100*x/nsub)});
+        char.rst <- c(char.rst, nsub);
+        rst      <- cbind(rst, char.rst);
+    }
+
+    rst <- cbind(rbind("", mis.pat, ""), rst);
+    colnames(rst) <- c(paste(voutcome, "Observed", sep=" "), trt.len);
+    rownames(rst) <- c("Deaths on study",
+                       paste("S=", 1:nrow(mis.pat), sep=""),
+                       "Total");
+
+    rst
+}    
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgce1f931">
+<div class="slide-header"></div>
+<h4 id="orgce1f931">C code</h4>
+<div class="org-src-container">
+
+<pre><code class="C" >//order two subjects
+void rankij(double *s1, double *z1, double *s2, double *z2,
+            double *duration, double *cuts, double *cutz, int *rst) {
+
+  double tmp;
+
+  //both alive
+  if ((*s1 > *duration) &&  (*s2 > *duration)) {
+    tmp = *z1 - *z2;
+    if (tmp > *cutz) {
+      *rst = 1;
+    } else if (tmp < -*cutz) {
+      *rst = -1;
+    } else {
+      *rst = 0;
+    }
+  } else if ((*s1 <= *duration) &&  (*s2 <= *duration)) {
+    tmp = *s1 - *s2;
+    if (tmp > *cuts) {
+      *rst = 1;
+    } else if (tmp < -*cuts) {
+      *rst = -1;
+    } else {
+      *rst = 0;
+    }
+  } else {
+    if (*s1 > *duration) {
+      *rst = 1;
+    } else {
+      *rst = -1;
+    }
+  }
+}
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgff6eb98">
+<div class="slide-header"></div>
+<h4 id="orgff6eb98">STAN code</h4>
+<div class="org-src-container">
+
+<pre><code class="R" >data {
+    int<lower=1>          NY;   //total no. y
+    int<lower=0>          NOBS; //no of observed y 
+    vector[NOBS+1]        YOBS; //add dummy y to handle nobs=0
+    int<lower=1>          NX;   //no. covariates
+    vector[NX]            X;    //covariates
+    matrix[NY, NX+3]      COEF; //coefficents 1st column is sigma
+
+    int<lower=0, upper=1> IMIS[NY];
+    int<lower=1>          INX[NY];
+
+    //residuals
+    int<lower=0, upper=1> ASSUMENORMAL;
+    int<lower=1>          NRES;
+    matrix[NRES,NY]       RESIDUAL;
+    real                  H[NY];
+
+}
+
+transformed data {
+    int<lower = 0> NMIS;
+    real MU[NY];
+    real SIGMA[NY];
+
+    NMIS = NY - NOBS;
+    for (i in 1:NY) {
+        SIGMA[i] = COEF[i, 1];
+        MU[i]    = COEF[i, 2];
+        //covariates
+        for (k in 1:NX) {
+            MU[i] = MU[i] + X[k] * COEF[i, 3+k];
+        }
+    }
+}
+
+parameters{
+    vector[NMIS] YMIS;
+}
+
+model {
+    YMIS ~ cond(YOBS, COEF, NY, MU, SIGMA, IMIS, INX, ASSUMENORMAL, NRES, RESIDUAL, H);
+}
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org7ea963f">
+<div class="slide-header"></div>
+<h3 id="org7ea963f">Difficulty</h3>
+<ul>
+<li>It is almost impossible to share the code with others 
+<ul>
+<li>No documentation</li>
+<li>No guidance</li>
+<li>Complicated configuration
+<ul>
+<li>Need to know STAN</li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org58e8b9d">
+<div class="slide-header"></div>
+<h3 id="org58e8b9d">R package</h3>
+<ul>
+<li>Re-Organize the functions</li>
+<li>Add detailed documentation</li>
+<li>Incorporate the C code</li>
+<li>Incorporate the STAN code</li>
+<li>Provide examples</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org9b04ff9">
+<div class="slide-header"></div>
+<h3 id="org9b04ff9">Development</h3>
+<div class="outline-text-3" id="text-org9b04ff9">
+</div><div class="slide-footer"></div>
+</section>
+<section id="slide-org6030c02">
+<div class="slide-header"></div>
+<h4 id="org6030c02">Re-Organized code</h4>
+<div class="org-src-container">
+
+<pre><code class="R" >#' Treatment effect estimation
+#'
+#' Estimate treatment effect and median of the composite endpoint from using
+#' imputed data
+#'
+#' @inheritParams imPlotCompleters
+#' @inheritParams imPlotImputed
+#'
+#' @param quantiles Quantiles of the composite endpoint to be reported
+#'
+#' @param ... Options for ranking subjects using the composite endpoint
+#' \describe{
+#' \item{cut.z}{Clinically meaningful difference in the functional outcome}
+#' \item{cut.surv}{Clinically meaningful difference in survival time}}
+#'
+#' @return A class \code{IDEM.RST} list contains
+#' \describe{
+#' \item{list.var}{List of parameters}
+#' \item{theta}{A dataset with columns \code{Delta0}, \code{Delta1}, \eqn{\hat{\theta}}}
+#' \item{quantiles}{ A dataset with columns \code{Delta}, \code{Trt}, \code{Quantiles}}
+#' \item{survivor}{A dataset for survivors with columns \code{Delta0}, \code{Delta1}, \code{Mean0},
+#' \code{Mean1}, \code{Diff}}}
+#'
+#' @examples
+#' \dontrun{
+#' lst.var <- list(trt="TRT", surv="SURV", outcome=c("Y1","Y2"), y0=NULL,
+#'                 endp=c("Y2"), unitTime="days",
+#'                 trt.label = c("UC+SBT", "SAT+SBT"),
+#'                 cov=c("AGE"), endfml="Y2", duration=365, bounds=c(0,100));
+#' rst.fit <- imFit(abc, lst.var);
+#' rst.imp <- imImpAll(abc, rst.fit, lst.var, deltas=c(-0.25,0,0.25),
+#'                     normal=TRUE, iter=300, n.imp=2, thin=10, p.scale=10);
+#' rst.est <- imEstimate(rst.imp, quantiles=c(0.25,0.5,0.75));}
+#'
+#' @export
+#'
+imEstimate <- function(imp.rst,
+                       quantiles=0.5,
+                       ...) {
+
+    if (is.null(imp.rst))
+        return(NULL);
+
+    stopifnot(any(class(imp.rst) == get.const("IMP.CLASS")));
+
+    lst.var  <- imp.rst$lst.var;
+    imp.data <- imp.rst$complete;
+    deltas   <- imp.rst$deltas;
+    n.imp    <- imp.rst$n.imp;
+
+    vtrt     <- lst.var$trt;
+    duration <- lst.var$duration;
+    vsurv    <- lst.var$surv;
+
+    ##trt arms
+    atrt <- sort(unique(imp.data[, vtrt]));
+
+    ##not imputed subjects
+    sub.noimp   <- imp.data[is.na(imp.data$IMP),,drop=FALSE];
+    ready.noimp <- get.data.ready(sub.noimp, lst.var, atrt);
+
+    rst.median   <- NULL;
+    rst.rank     <- NULL;
+    for (i in 1:n.imp) {
+        tmp.lst <- rep(list(NULL), length(deltas));
+        for (j in 1:length(deltas)) {
+            cur.data     <- subset(imp.data, imp.data$DELTA == deltas[j] & imp.data$IMP == i);
+            cur.ready    <- get.data.ready(cur.data, lst.var, atrt);
+            tmp.lst[[j]] <- rep(list(NULL), length(atrt));
+
+            for (k in 1:length(atrt)) {
+                tmp.lst[[j]][[k]] <- rbind(ready.noimp[[k]], cur.ready[[k]]);
+                c.med             <- get.median(tmp.lst[[j]][[k]], duration, quantiles=quantiles, ...);
+                rst.median        <- rbind(rst.median,
+                                           cbind(i, deltas[j], atrt[k], c.med));
+            }
+        }
+
+        for (t1 in 1:length(deltas)) {
+            for (t2 in 1:length(deltas)) {
+                cur.rank <- c.rankall(tmp.lst[[t1]][[1]],
+                                      tmp.lst[[t2]][[2]],
+                                      duration, ...);
+                rst.rank <- rbind(rst.rank,
+                                  c(i, deltas[t1], deltas[t2], cur.rank));
+            }
+        }
+    }
+
+    colnames(rst.median) <- c("Imputation", "Delta", "TRT", "Q", "QuantSurv", "QuantY");
+    colnames(rst.rank)   <- c("Imputation", "Delta0", "Delta1", "Theta");
+
+    ##median of median
+    dfmedian       <- data.frame(rst.median);
+    dfmedian$Quant <- get.comp(dfmedian$QuantY, dfmedian$QuantSurv, lst.var$duration);
+    dfmedian       <- sqldf('select * from dfmedian order by Delta, Trt, Q, Quant');
+    inx.median     <- ceiling(n.imp/2);
+    median.median  <- dfmedian[seq(inx.median, nrow(dfmedian), by=n.imp),
+                               c("Delta", "TRT", "Q", "QuantY", "QuantSurv")];
+
+    inx.2 <- which(median.median$QuantSurv <= lst.var$duration);
+    if (length(inx.2) > 0) {
+        median.median[inx.2,  "QuantY"]    <- NA;
+        median.median[-inx.2, "QuantSurv"] <- NA;
+    }
+
+    ##average rank
+    dfrank  <- data.frame(rst.rank);
+    avg.rank <- sqldf('select Delta0, Delta1, avg(Theta) as Theta
+                       from dfrank group by Delta1, Delta0');
+
+    ##survivor functional means
+    dalive       <- imp.data[imp.data[,vsurv] > duration, , drop=FALSE];
+    rst.survivor <- NULL;
+    if (nrow(dalive) > 0) {
+        ##there exist survivors
+        endp    <- get.const("TXT.ENDP");
+        txt.sql <- paste("select delta, trt, avg(endp) as Mean",
+                         "from (select distinct delta, ", vtrt, " as trt, ID,",
+                         "avg(", endp, ") as endp",
+                         "from dalive group by delta, ID) group by delta, trt",
+                         sep=" ");
+        survtrt    <- sqldf(txt.sql);
+        survtrt.t0 <- survtrt[seq(1, nrow(survtrt)-1, 2), c("delta", "Mean")];
+        survtrt.t1 <- survtrt[seq(2, nrow(survtrt), 2), c("delta", "Mean")];
+        ndelta     <- nrow(survtrt.t0);
+        rst.survivor <- cbind(survtrt.t0[ rep(1:ndelta, each = ndelta),],
+                              survtrt.t1[ rep(1:ndelta, ndelta),]);
+
+        colnames(rst.survivor) <- c("Delta0", "Mean0", "Delta1", "Mean1");
+        rst.survivor <- data.frame(rst.survivor);
+        rst.survivor$Diff <- rst.survivor$Mean1 - rst.survivor$Mean0;
+    }
+
+    rst <- list(lst.var=lst.var,
+                quantiles=median.median,
+                theta=avg.rank,
+                survivor=rst.survivor,
+                raw.theta=rst.rank,
+                raw.quantiles=rst.median);
+
+    class(rst) <- get.const("RST.CLASS");
+    rst
+}
+
+
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org4b800b6">
+<div class="slide-header"></div>
+<h4 id="org4b800b6">Incorporate external code</h4>
+
+<div class="figure">
+<p><img src="rpkg_src.png" alt="rpkg_src.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org6a7f4b4">
+<div class="slide-header"></div>
+<h3 id="org6a7f4b4">Final Product</h3>
+<ul>
+<li>A single <code>tar</code> file</li>
+<li>Can be download and installed from online for 
+<ul>
+<li>32-bit Windows</li>
+<li>64-bit Windows</li>
+<li>Mac OS</li>
+<li>Unix</li>
+
+</ul></li>
+<li>With detailed <a href="idem.pdf">help file</a></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgc018e7b">
+<div class="slide-header"></div>
+<h3 id="orgc018e7b">Script Mode Demo</h3>
+<div class="org-src-container">
+
+<pre><code class="R" >install.packages("idem");
+require(idem);
+head(abc);
+help("idem-parameters", package=idem);
+lst.var <- list(trt = "TRT", surv = "SURV", outcome = c("Y1","Y2"),
+                y0 = NULL, endp = c("Y2"), unitTime = "days",
+                trt.label = c("UC+SBT", "SAT+SBT"), cov = c("AGE"), endfml = "Y2",
+                duration = 365, bounds = c(0,100));
+is.null(imChkPars(abc, lst.var));
+imMisTable(abc, lst.var);
+imPlotCompleters(abc, lst.var);
+imPlotMisPattern(abc, lst.var);
+imPlotSurv(abc, lst.var);
+rst.fit <- imFitModel(data.all = abc, lst.var = lst.var);
+rst.mixing <- imImpSingle(abc[1,], rst.fit,
+                          chains = 4, iter = 2000, warmup = 1000);
+rst.imp <- imImpAll(abc, rst.fit, deltas = seq(-0.2,0.2,0.05),
+                    n.imp = 5, normal = TRUE, chains = 4, iter = 5000, warmup = 1000);
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgac3531f">
+<div class="slide-header"></div>
+<h3 id="orgac3531f">Question</h3>
+<ul>
+<li>Is this enough?</li>
+<li>What about users who do not know R?</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgaaab434">
+<div class="slide-header"></div>
+<h2 id="orgaaab434">Case Study: User-Friendly Software</h2>
+<div class="outline-text-2" id="text-orgaaab434">
+</div><div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org55ed9b6">
+<div class="slide-header"></div>
+<h3 id="org55ed9b6">Graphical User Interface</h3>
+<ul>
+<li>Many options</li>
+<li>Web-Based GUI is platform independent</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org4943bda">
+<div class="slide-header"></div>
+<h3 id="org4943bda">Shiny</h3>
+<ul>
+<li>Allows statisticians to develop web pages without knowledge of HTML, Java
+Script, CSS, etc.</li>
+<li>Allows to fully use existing statistical code</li>
+<li>Optimized for computation efficiency</li>
+<li>Ideal for interactive applications</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgdbeed88">
+<div class="slide-header"></div>
+<h3 id="orgdbeed88">Plan</h3>
+<ul>
+<li>Build a web application based on the component software</li>
+<li>Develop web pages and server files</li>
+<li>Deploy the application on web</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org76a60a7">
+<div class="slide-header"></div>
+<h3 id="org76a60a7">Web Pages</h3>
+<div class="org-src-container">
+
+<pre><code class="R" >list(
+    msg.box("On this page, you will specify inputs for the imputation and estimation procedures."),
+    wellPanel(h4("General Imputation Settings"),
+              fluidRow(
+                  column(3,
+                         h6("Number of imputed datasets"),
+                         sliderInput("inNImp", label = "", value=10, min=1, max=20, step=1),
+                         h6("Normality assumption"),
+                         radioButtons(inputId="inNorm", label="", c("Yes"=1, "No"=0))
+                         ),
+                  column(3,
+                         h6("Number of bootstrap samples"),
+                         sliderInput(inputId = "inNbs", label = "",
+                                     value = 100, min = 5, max = 1000, step=1),
+                         h6("Random seed"),
+                         numericInput(inputId="inSeed", label="", value=0, min=0)),
+                  column(3,
+                         h6("Number of Cores (Parallel Bootstrap)"),
+                         sliderInput("inNcores", label = "", value = 1, min = 1,
+                                     max = (parallel::detectCores()-1), step = 1))
+              )),
+    wellPanel(
+        h4("MCMC Paramters"),
+        msg.box("Specify parameters for Bayesian posterior sampling. The target metropolis
+                      acceptance rate and initial step-size are options for advanced users to
+                      control STAN sampler's behavior. "),
+        fluidRow(
+            column(3,
+                   h6("Number of iterations"),
+                   sliderInput(inputId = "mcmciter", label = "",
+                               value = 2000, min = 200, max = 20000, step=100),
+                   h6("Number of burn-in"),
+                   sliderInput("mcmcburnin", label = "", value=1000, min=100, max=20000, step=100)
+                   ),
+            column(3,
+                   h6("Number of thinning"),
+                   sliderInput(inputId = "mcmcthin", label = "", value=2, min=1, max=50, step=1),
+                   h6("Number of chains"),
+                   sliderInput("mcmcchain", label = "", value=4, min=2, max=10, step=1)
+                   ),
+            column(3,
+                   h6("Target Metropolis Acceptance Rate"),
+                   sliderInput("mcmcdelta", label = "", value=0.95, min=0.05, max=1, step=0.05),
+                   h6("Initial Step-size"),
+                   sliderInput("mcmcstepsize", label = "", value=1, min=0.05, max=5, step=0.05)
+                   ##h6("Algorithm"),
+                   ##radioButtons('mcmcalg', '', c('NUTS', 'HMC', "Fixed_param"))
+                   ))),
+    wellPanel(h4("Sensitivity Parameters and Additional Quantile Output"),
+              fluidRow(
+                  column(3,
+                         h6("Imputation sensitivity parameters (separate by comma).
+                              Default values set such that the range of the sensitivity
+                              parameters is equal to one-fourth standard deviation of
+                              the distriubtion of functional endpoints among subjects
+                              who do not require their data to be imputed."),
+                         textInput("inSensp", label="", value = get.sd.endp(outVar='ImpSens'))),
+                  column(3,
+                         h6("The median of the composite endpoint for each treatment
+                              will be computed. Below enter additional percentiles of
+                              the composite variable you would like to obtain."),
+                         textInput("inExtras", label="", value=c("25,75"))),
+                  column(3,
+                         h6('SACE Sensitivity Parameter (separate by comma,
+                              values <= 0 are valid). Default values set such that
+                              the range of the sensitivity parameter ranges from 0 to
+                              minus one-half standard deviation of the distribution of
+                              functional endpoints among subjects who do not require
+                              their data to be imputed.'),
+                         textInput("inSACE", label="", value=get.sd.endp(outVar='SACE')))
+              )),
+    wellPanel(
+        h4("Convergence Checking"),
+        msg.box("Randomly select a subject and check the MCMC sampling convergence"),
+        actionButton("btnConverge", "Check Convergence", style="info"),
+        uiOutput('uiImpConv')
+    )
+);
+
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgd1e95b5">
+<div class="slide-header"></div>
+<h3 id="orgd1e95b5">Server files</h3>
+<div class="org-src-container">
+
+<pre><code class="R" >output$outTblBootQuantiles <- renderTable({
+    if (0 == input$btnBoot)
+        return(NULL);
+    rst <- get.rst.overall();
+
+    rst$quantiles;
+
+}, include.rownames=TRUE,
+caption = 'Table: Quantiles of Compositve Variable',
+caption.placement = getOption("xtable.caption.placement", "top"),
+caption.width = getOption("xtable.caption.width", NULL));
+
+## Contour plots
+output$outBootContourRank <- renderPlot({
+    if (0 == input$btnBoot)
+        return(NULL);
+    rst <- get.rst.overall();
+    imPlotContour(rst, plot.title="");
+},
+width=500,
+height=500,
+bg="transparent");
+
+##--------------------------------------
+##----------Report----------------------
+##--------------------------------------
+output$uiReport <- renderUI({
+    if (is.null(get.data())) {
+        msg.box("Please upload data first.", "warning");
+    } else if (-1 == userLog$model) {
+        msg.box("Please validate model first.", "warning");
+    } else {
+        wellPanel(h4('Download the analysis report'),
+                  radioButtons('format', '', c('PDF', 'HTML', 'Word')),
+                  downloadButton('btnDload'))
+    }
+})
+
+output$btnDload <- downloadHandler(
+    filename=function() {
+    paste('report_',
+          format(Sys.time(), "%m%d%Y%H%M%S"),
+          '.',
+          switch(input$format,
+                 PDF = 'pdf',
+                 HTML = 'html',
+                 Word = 'docx'
+                 ),
+          sep="")
+},
+
+content=function(file) {
+    out <- rmarkdown::render('report/report.Rmd',
+                             switch(input$format,
+                                    PDF  = rmarkdown::pdf_document(),
+                                    HTML = rmarkdown::html_document(),
+                                    Word = rmarkdown::word_document()
+                                    ));
+
+    bytes <- readBin(out, "raw", file.info(out)$size);
+    writeBin(bytes, file);
+})
+
+</code></pre>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org54256fe">
+<div class="slide-header"></div>
+<h3 id="org54256fe">Demo</h3>
+<ul>
+<li><a href="https://olssol.shinyapps.io/idem/">https://olssol.shinyapps.io/idem/</a></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org4fc405c">
+<div class="slide-header"></div>
+<h3 id="org4fc405c">Appendix</h3>
+<ul>
+<li>Demo of a spatial software <a href="http://olssol2.shinyapps.io/icemr">http://olssol2.shinyapps.io/icemr</a></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org5d81d89">
+<div class="slide-header"></div>
+<h2 id="org5d81d89">Scientific Software</h2>
+<div class="outline-text-2" id="text-org5d81d89">
+</div><div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orga550cf6">
+<div class="slide-header"></div>
+<h3 id="orga550cf6">Portal</h3>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org1e63d14">
+<div class="slide-header"></div>
+<h3 id="org1e63d14">Cloud computation</h3>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org28a8e3c">
+<div class="slide-header"></div>
+<h3 id="org28a8e3c">Security</h3>
+<div class="slide-footer"></div>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c/t',
+rollingLinks: true,
+keyboard: true,
+overview: true,
+margin: 0.10,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'convex', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }]
+});
+</script>
+</body>
+</html>
