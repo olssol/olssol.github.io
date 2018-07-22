@@ -1,0 +1,313 @@
+
+#+TITLE: A Bayesian Non-Parametric Causal Inference Model for Comparative Effectiveness Research
+#+AUTHOR: Chenguang Wang and Gary Rosner
+#+Email: cwang68@jhmi.edu
+#+Date: ICSA 2017
+
+#+OPTIONS: toc:nil H:2 num:nil
+#+STARTUP: nohideblocks
+#+BIBLIOGRAPHY: ref_beanz plain
+
+# #---- reveal export-----
+# # C+c C+e R B to export
+# # F to enter full screen
+# # ESC to see the overview
+
+#+OPTIONS: reveal_center:t reveal_rolling_links:t reveal_slide_number:c/t
+#+REVEAL_HLEVEL: 3
+#+REVEAL_THEME: serif
+#+REVEAL_HIGHLIGHT: tango
+#+REVEAL_TRANS: convex
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_DEFAULT_FRAG_STYLE: fade-in
+#+REVEAL_PLUGINS: (markdown highlight)
+#+REVEAL_EXTRA_CSS: ./presentation.css
+#+REVEAL_PLUGINS: (markdown highlight)
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.0.0/
+#+REVEAL_SLIDE_FOOTER: 
+#+REVEAL_SLIDE_HEADER: 
+
+#+BEGIN_HTML
+\(
+   \newcommand{\uV} {{\bf V}}
+   \newcommand{\uv} {{\bf v}}
+   \newcommand{\ue} {{\bf e}}
+   \newcommand{\ualpha} {{\bf \alpha}}
+   \newcommand{\logit} {{logit}}
+   \newcommand{\uet} {{\bf w}}
+   \newcommand{\ueta} {{\eta}}
+   \newcommand{\utheta} {{\eta}}
+\)
+#+END_HTML
+
+# #---- latex export-----
+#+LATEX_CLASS_OPTIONS: [presentation, seagull]
+#+BEAMER_THEME: default
+#+BEAMER_HEADER: \input{latex_header}
+
+
+* Introduction
+** Comparative Effectiveness Research (CER)
+   - Designed to inform health-care decisions by providing evidence on
+     - effectiveness
+     - benefits
+     - harm
+   - Synthesize evidence from /disparate sources/
+     - randomized clinical trials
+     - observational studies
+     - real-world data
+     - etc.
+   - /Challenge/ is to /address study-specific heterogeneities/ to increase the
+     scientific validity and efficiency of such synthesis analysis
+** Bayesian Approaches
+   - Offer a formal probabilistic framework to combine existing and new
+     evidence from both outside and within a study
+   - Recommended for /CER/ by many researchers
+** Goal
+   - Develop a /Bayesian non-parametric/ causal inference model 
+   - Synthesize information from /randomized controlled clinical trials/
+     and /real-world studies/ for evaluating the causal effect of
+     medical interventions
+* Motivating Example
+
+** Propensity Score (PS) Adjustment
+   - Common approach for /controlling confounding factors/ and 
+     adjusting the bias of treatment effects
+   - Defined as the /conditional probability/ of assignment to treatment
+     given baseline covariates
+     - Let \(Z=1\) and \(0\) denote the treatment and the control arm
+     - Let \(\uV\) denote the baseline covariates
+     - The /propensity score/, \(e(\uV)\), is defined as 
+       \[e(\uv) = P(Z=1|\uV=\uv) = E(Z|\uV=\uv)\]
+
+** PS Adjustment
+
+   - For subject \(i\), let \(Y_i(0)\) and \(Y_i(1)\) denote the
+     /potential outcome/ under the control and the treatment
+   - Assume there are /no unmeasured confounders/ (strongly ignorable
+     treatment assignment assumption)
+   - The /average treatment effect/ (ATE) can be estimated as
+     \[E[Y_i(1)-Y_i(0)] 
+     = E_{e(\uv)} \left[ E\{Y|Z=1, e(\uV)\} - E\{Y|Z=0,e(\uV)\}  \right]
+     \]
+
+** PS Adjustment
+
+   - Methods using estimated PS for estimating treatment effects include
+     - matching
+     - stratification
+     - weighting 
+     - regression
+
+   - Question 
+     - How does /non-parametric propensity score regression/ perform
+       compared to other approaches?
+
+** Dirichlet Process (DP)
+   - Distribution on space of distributions
+   - $G \sim DP(G_0, M)$
+   - For any partition $(B_1, B_2, \ldots, B_m)$ on the support of $G_0$,
+     $(G(B_1), \ldots, G(B_m))$ follows a Dirichlet distribution with parameters
+     $(M G_0(B_1), \ldots, M G_0(B_m))$
+   - As $M$ increases, the variance of $G$ decreases and $G$ is /closer/ to $G_0$
+ 
+** DP Model   
+
+  \begin{align*}
+  y_i, e(\uv_i) & |Z_i=z  \sim MVN(F^{(z)}, \Sigma^{(z)}) \\
+  F^{(z)} & \sim DP(G^{(z)}, M^{(z)}) \\
+  G^{(z)} & \sim N(m^{(z)}, B^{(z)})
+  \end{align*}
+
+** Toy Example
+   - Assume that there is one covariate $V \sim N(1,1)$
+   - Outcome $Y|V=v \sim N(10v, 1)$
+   - Randomized study: treatment assignment independent of $V$
+   - Observational study: $\logit P(Z=1|V=v) = -5 + 5v$
+   - Consider four approaches  
+     - Naive estimation
+     - PS stratification 
+     - Random forest
+     - DP 
+ 
+** Results
+
+   [[file:table1.png]]
+
+* Method
+
+** Proposal
+  - Extend PS adjustment for CER
+  - Apply Bayesian Hierarchical DP models for CER 
+
+** Notation
+
+  - Consider \(J\) two-arm clinical studies with the /same treatment and control/
+    and the /same set of baseline covariates/
+  - Assume studies \(1, \ldots, K\) (\(K \leq J\)) are observational studies and
+    the rest are randomized studies
+  - In study \(S=j\), subject \(i\) with baseline covariates \(\uV_{ij}\) is
+    treated with treatment \(Z_{ij}\)
+  - Let \(e_{ijk} = P(Z_i=1|\uV=\uv_{ij},S=k)\) be the propensity score of
+    subject \(i\) with baseline covariates \(\uv_{ij}\) on study \(k\) (\(k = 1,
+    \ldots, K\))
+    - \(e_{ijk}\) denotes the probability for the \(i\)th subject on the
+      \(j\)th study to be assigned to the treatment arm should the subject be
+      enrolled on the observational study \(k\)
+  - Furthermore, let \(\ue^\dagger_{ij} = \{e_{ij1}, \ldots, e_{ijK}\}\)
+
+** Proposition
+
+   Under the strong ignorable treatment assignments assumption, for all $i$ and $j$,
+   \[ Z_{ij} \perp Y_{ij}(0), Y_{ij}(1) | \ue^\dagger_{ij}, S=j \]
+
+
+** Proof
+
+   - \(\ue^\dagger_{ij}\) is a function of \(\uV_{ij}\) 
+   - \(E(e_{ij}|\ue^\dagger_{ij}) = e_{ij}\)
+   - Therefore,  \(\ue^\dagger_{ij}\) is a /balance score/ (Rosenbaum, 1983)
+   - The proposition holds
+
+** ATE in CER
+
+   The study specific /causal treatment effect/ can be obtained by 
+   
+     \begin{align*}
+     E[Y_i(1)-Y_i(0)|S=j] &= \\ 
+     E_{\ue^\dagger|S=j} & \left [ E\{Y|Z=1,\ue^\dagger,S=j\}
+     -E\{Y|Z=0,\ue^\dagger,S=j\} \right ]
+     \end{align*} 
+
+** PS Model
+
+   - In practice, we propose to first fit logistic regression models
+     to the observational studies \(S=k\) (\(k=1,\ldots,K\)) 
+
+     \[\logit P(Z_{ik}=1|\uV_{ik}=\uv_{ik},S=k) = \alpha_{0,k} + \uv'_{ik}\ualpha_{1,k}\]   
+
+   - Then, estimate \(e_{ijk}\) by
+     \[ \widehat{e}_{ijk} = {\exp (\widehat{\alpha}_{0,k} + \uv_{ij}' \widehat{\ualpha}_{v,k})
+         \over 1 + \exp (\widehat{\alpha}_{0,k} + \uv_{ij}' \widehat{\ualpha}_{v,k} )} \]
+
+   - Let \(\uet_{ij} = \logit \widehat{\ue}^\dagger_{ij}\)
+
+** Hierarchical DP (HDP)
+   - DP approach often shares information through the full distribution
+   - Challenging to construct hierarchical DP models
+   - M\uuml{}ller et al. (2004)
+     \begin{equation*}
+     H_j( \cdot \mid \ueta) =
+     \varepsilon \underbrace{F_0(\cdot \mid \ueta)}_{common}
+     +
+     (1-\varepsilon)\underbrace{F_j(\cdot \mid \ueta)}_{idiosyncratic}
+     \end{equation*}
+
+** Bayesian Model
+
+  \begin{align*}
+    y_{ij}, \uet_{ij} & |Z=z, S=j \sim MVN(H^{(z)}_j, \Sigma^{(z)}_j) \\
+    H^{(z)}_j &= \epsilon^{(z)} F^{(z)}_0 + (1-\epsilon^{(z)}) F^{(z)}_j \\
+    F^{(z)}_j &\sim DP(G^{(z)}, M^{(z)}_j) \\
+    G^{(z)}   &\sim N(m^{(z)}, B^{(z)})
+  \end{align*}
+
+** HDP
+
+   [[file:ps_hdp.png]]
+
+
+** Priors
+
+   \begin{align*}
+    m^{(z)}     &\sim N(0, 10^3) \\
+    B^{(z)}     &\sim \text{Inverse-Wishart}(q_B, R_B) \\
+    M^{(z)}_j   &\sim \Gamma(a_M=1, b_M=1) \\ 
+    p(\epsilon) &= \pi_0 \delta_0(\epsilon) + \pi_1 \delta_1(\epsilon) \\
+                & \hspace{0.5cm} + (1-\pi_0-\pi_1) Beta(a_\epsilon=1,b_\epsilon=1)
+   \end{align*}
+
+** Inference
+
+   \begin{align*}
+ p(y(z)|S=j) &= \int p(y(z)| \uet, S=j) p(\uet|S=j) d \uet  \\
+ &=  \int p(y|Z=z, \uet ,S=j) p(\uet|S=j) d\uet
+ \end{align*}
+
+    - Use the empirical distribution of \(\uet\) on study \(j\) to
+      approximate \(p(\uet|S=j)\)
+    - The distribution \(p(y|Z=z,\uet,S=j)\) is induced from the
+      prediction distribution of \((y, \uet)|Z=z, S=j, \utheta_j\) where
+      \(\utheta_j\) represents the DP parameters for \(S=j\)
+
+** Sensitivity Analysis
+
+   - PS only balances covariates that are used to construct the score
+   - /Strong ignorable treatment assignment/ assumption fails to hold when there
+     are /unmeasured confounders/
+   - Sensitivity analysis desirable to investigate the robustness of the study findings
+
+** Sensitivity Analysis
+   - Let $U$ denote an unmeasured confounder
+   - For participants with $Z=1$, assume
+     \[ P(Z=z|\uV,U) = \frac{P(Z=z|\uV) e^{\Delta z}}
+                       { \sum_{z=0}^1 P(Z=z|\uV) e^{\Delta z} } \]
+   - Equivalent as \[\logit P(Z=1|\uV, U) = \alpha_0 + \uV\ualpha_v + \Delta U\]
+     where $P(U=1)=1$ and $0$ for $Z=1$ and 0, respectively
+* Simulation Study
+** Data Generation
+   - 4 clinical studies ($J$ = 4) including 3 observational studies ($K$ = 3)
+     and 1 randomized study
+   - 10 covariates jointly follow a multivariate normal distribution
+   - Treatment assignment model
+      \[\logit P(Z_{ik}=1) = \alpha_{0,k} + \sum_{p=1}^7\alpha_{p,k} V_{p,i,k}\]
+   - Response model
+     \[Y_{ij} = \beta_{0,j} + \sum_{p=4}^{10} \beta_{p,j} V_{p,i,j} + \epsilon_{ij}\]
+
+** Scenarios
+    - Scenario I
+      - same patient populations
+      - same covariate effects
+      - same treatment effects
+      - same treatment assignment for observational studies
+    - Scenario II
+      - different patient populations 
+        - covariates with /different variances/ among studies
+    - Scenario III
+      - different patient populations 
+        - covariates with /different variances/ among studies
+      - different treatment assignment for observational studies
+    - Scenario IV
+      - different patient populations 
+        - covariates with /different variances/ across studies
+        - covariates with /different means/ across studies
+      - different treatment assignment for observational studies
+** Scenarios 
+   [[file:simu_sce1.png]]
+** Scenarios
+   [[file:simu_sce2.png]]
+** Results
+   :PROPERTIES:
+   :BEAMER_opt: shrink=30
+   :END:
+   [[file:simu_rst_I.png]]
+** Results 
+   :PROPERTIES:
+   :BEAMER_opt: shrink=30
+   :END:
+   [[file:simu_rst_ii.png]]
+** Results 
+   [[file:simu_rst_iii.png]]
+** Results 
+   [[file:simu_rst_iv.png]]
+* Discussion
+
+** Summary
+   - Propose a Bayesian non-parametric approach to address issues in CER
+   - Propensity score associate RCTs and observational studies
+     - Why not model $(Y, V)$? 
+   - Hierarchical DP model
+     - Why not model $(Y_{ij}, e_{ij})$?
+   - Causal inference
+     - Which study should be the focus of the inference? 
+     - Arm-based approach

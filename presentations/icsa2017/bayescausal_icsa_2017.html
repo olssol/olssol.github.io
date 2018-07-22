@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>A Bayesian Non-Parametric Causal Inference Model for Comparative Effectiveness Research</title>
+<meta name="author" content="(Chenguang Wang and Gary Rosner)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/serif.css" id="theme"/>
+
+<link rel="stylesheet" href="./presentation.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">A Bayesian Non-Parametric Causal Inference Model for Comparative Effectiveness Research</h1><h2 class="author">Chenguang Wang and Gary Rosner</h2><h2 class="date">ICSA 2017</h2><p class="date">Created: 2017-06-26 Mon 08:36</p>
+</section>
+<div class="HTML">
+<p>
+\(
+   \newcommand{\uV} {{\bf V}}
+   \newcommand{\uv} {{\bf v}}
+   \newcommand{\ue} {{\bf e}}
+   \newcommand{\ualpha} {{\bf \alpha}}
+   \newcommand{\logit} {{logit}}
+   \newcommand{\uet} {{\bf w}}
+   \newcommand{\ueta} {{\eta}}
+   \newcommand{\utheta} {{\eta}}
+\)
+</p>
+
+</div>
+
+
+<section>
+<section id="slide-org84ad6d3">
+<div class="slide-header"></div>
+<h2 id="org84ad6d3">Introduction</h2>
+<div class="outline-text-2" id="text-org84ad6d3">
+</div><div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org645b000">
+<div class="slide-header"></div>
+<h3 id="org645b000">Comparative Effectiveness Research (CER)</h3>
+<ul>
+<li>Designed to inform health-care decisions by providing evidence on
+<ul>
+<li>effectiveness</li>
+<li>benefits</li>
+<li>harm</li>
+
+</ul></li>
+<li>Synthesize evidence from <i>disparate sources</i>
+<ul>
+<li>randomized clinical trials</li>
+<li>observational studies</li>
+<li>real-world data</li>
+<li>etc.</li>
+
+</ul></li>
+<li><i>Challenge</i> is to <i>address study-specific heterogeneities</i> to increase the
+scientific validity and efficiency of such synthesis analysis</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgd80b852">
+<div class="slide-header"></div>
+<h3 id="orgd80b852">Bayesian Approaches</h3>
+<ul>
+<li>Offer a formal probabilistic framework to combine existing and new
+evidence from both outside and within a study</li>
+<li>Recommended for <i>CER</i> by many researchers</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org2e20ec3">
+<div class="slide-header"></div>
+<h3 id="org2e20ec3">Goal</h3>
+<ul>
+<li>Develop a <i>Bayesian non-parametric</i> causal inference model</li>
+<li>Synthesize information from <i>randomized controlled clinical trials</i>
+and <i>real-world studies</i> for evaluating the causal effect of
+medical interventions</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org9e46143">
+<div class="slide-header"></div>
+<h2 id="org9e46143">Motivating Example</h2>
+<div class="outline-text-2" id="text-org9e46143">
+</div><div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgda4aab4">
+<div class="slide-header"></div>
+<h3 id="orgda4aab4">Propensity Score (PS) Adjustment</h3>
+<ul>
+<li>Common approach for <i>controlling confounding factors</i> and 
+adjusting the bias of treatment effects</li>
+<li>Defined as the <i>conditional probability</i> of assignment to treatment
+given baseline covariates
+<ul>
+<li>Let \(Z=1\) and \(0\) denote the treatment and the control arm</li>
+<li>Let \(\uV\) denote the baseline covariates</li>
+<li>The <i>propensity score</i>, \(e(\uV)\), is defined as 
+\[e(\uv) = P(Z=1|\uV=\uv) = E(Z|\uV=\uv)\]</li>
+
+</ul></li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org4747dd0">
+<div class="slide-header"></div>
+<h3 id="org4747dd0">PS Adjustment</h3>
+<ul>
+<li>For subject \(i\), let \(Y_i(0)\) and \(Y_i(1)\) denote the
+<i>potential outcome</i> under the control and the treatment</li>
+<li>Assume there are <i>no unmeasured confounders</i> (strongly ignorable
+treatment assignment assumption)</li>
+<li>The <i>average treatment effect</i> (ATE) can be estimated as
+\[E[Y_i(1)-Y_i(0)] 
+     = E_{e(\uv)} \left[ E\{Y|Z=1, e(\uV)\} - E\{Y|Z=0,e(\uV)\}  \right]
+     \]</li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org7196139">
+<div class="slide-header"></div>
+<h3 id="org7196139">PS Adjustment</h3>
+<ul>
+<li>Methods using estimated PS for estimating treatment effects include
+<ul>
+<li>matching</li>
+<li>stratification</li>
+<li>weighting</li>
+<li>regression</li>
+
+</ul></li>
+
+<li>Question 
+<ul>
+<li>How does <i>non-parametric propensity score regression</i> perform
+compared to other approaches?</li>
+
+</ul></li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org43b3b60">
+<div class="slide-header"></div>
+<h3 id="org43b3b60">Dirichlet Process (DP)</h3>
+<ul>
+<li>Distribution on space of distributions</li>
+<li>\(G \sim DP(G_0, M)\)</li>
+<li>For any partition \((B_1, B_2, \ldots, B_m)\) on the support of \(G_0\),
+\((G(B_1), \ldots, G(B_m))\) follows a Dirichlet distribution with parameters
+\((M G_0(B_1), \ldots, M G_0(B_m))\)</li>
+<li>As \(M\) increases, the variance of \(G\) decreases and \(G\) is <i>closer</i> to \(G_0\)</li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org8b1f932">
+<div class="slide-header"></div>
+<h3 id="org8b1f932">DP Model</h3>
+<div>
+\begin{align*}
+y_i, e(\uv_i) & |Z_i=z  \sim MVN(F^{(z)}, \Sigma^{(z)}) \\
+F^{(z)} & \sim DP(G^{(z)}, M^{(z)}) \\
+G^{(z)} & \sim N(m^{(z)}, B^{(z)})
+\end{align*}
+
+</div>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org2f92acf">
+<div class="slide-header"></div>
+<h3 id="org2f92acf">Toy Example</h3>
+<ul>
+<li>Assume that there is one covariate \(V \sim N(1,1)\)</li>
+<li>Outcome \(Y|V=v \sim N(10v, 1)\)</li>
+<li>Randomized study: treatment assignment independent of \(V\)</li>
+<li>Observational study: \(\logit P(Z=1|V=v) = -5 + 5v\)</li>
+<li>Consider four approaches  
+<ul>
+<li>Naive estimation</li>
+<li>PS stratification</li>
+<li>Random forest</li>
+<li>DP</li>
+
+</ul></li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orge936b53">
+<div class="slide-header"></div>
+<h3 id="orge936b53">Results</h3>
+
+<div class="figure">
+<p><img src="table1.png" alt="table1.png" />
+</p>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgeca0cb1">
+<div class="slide-header"></div>
+<h2 id="orgeca0cb1">Method</h2>
+<div class="outline-text-2" id="text-orgeca0cb1">
+</div><div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org9590e2e">
+<div class="slide-header"></div>
+<h3 id="org9590e2e">Proposal</h3>
+<ul>
+<li>Extend PS adjustment for CER</li>
+<li>Apply Bayesian Hierarchical DP models for CER</li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf820277">
+<div class="slide-header"></div>
+<h3 id="orgf820277">Notation</h3>
+<ul>
+<li>Consider \(J\) two-arm clinical studies with the <i>same treatment and control</i>
+and the <i>same set of baseline covariates</i></li>
+<li>Assume studies \(1, \ldots, K\) (\(K \leq J\)) are observational studies and
+the rest are randomized studies</li>
+<li>In study \(S=j\), subject \(i\) with baseline covariates \(\uV_{ij}\) is
+treated with treatment \(Z_{ij}\)</li>
+<li>Let \(e_{ijk} = P(Z_i=1|\uV=\uv_{ij},S=k)\) be the propensity score of
+subject \(i\) with baseline covariates \(\uv_{ij}\) on study \(k\) (\(k = 1,
+    \ldots, K\))
+<ul>
+<li>\(e_{ijk}\) denotes the probability for the \(i\)th subject on the
+\(j\)th study to be assigned to the treatment arm should the subject be
+enrolled on the observational study \(k\)</li>
+
+</ul></li>
+<li>Furthermore, let \(\ue^\dagger_{ij} = \{e_{ij1}, \ldots, e_{ijK}\}\)</li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orga28db38">
+<div class="slide-header"></div>
+<h3 id="orga28db38">Proposition</h3>
+<p>
+Under the strong ignorable treatment assignments assumption, for all \(i\) and \(j\),
+\[ Z_{ij} \perp Y_{ij}(0), Y_{ij}(1) | \ue^\dagger_{ij}, S=j \]
+</p>
+
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org7a8ea6d">
+<div class="slide-header"></div>
+<h3 id="org7a8ea6d">Proof</h3>
+<ul>
+<li>\(\ue^\dagger_{ij}\) is a function of \(\uV_{ij}\)</li>
+<li>\(E(e_{ij}|\ue^\dagger_{ij}) = e_{ij}\)</li>
+<li>Therefore,  \(\ue^\dagger_{ij}\) is a <i>balance score</i> (Rosenbaum, 1983)</li>
+<li>The proposition holds</li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org5eeb11f">
+<div class="slide-header"></div>
+<h3 id="org5eeb11f">ATE in CER</h3>
+<p>
+The study specific <i>causal treatment effect</i> can be obtained by 
+</p>
+
+<div>
+\begin{align*}
+E[Y_i(1)-Y_i(0)|S=j] &= \\ 
+E_{\ue^\dagger|S=j} & \left [ E\{Y|Z=1,\ue^\dagger,S=j\}
+-E\{Y|Z=0,\ue^\dagger,S=j\} \right ]
+\end{align*} 
+
+</div>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orga37957b">
+<div class="slide-header"></div>
+<h3 id="orga37957b">PS Model</h3>
+<ul>
+<li><p>
+In practice, we propose to first fit logistic regression models
+to the observational studies \(S=k\) (\(k=1,\ldots,K\)) 
+</p>
+
+<p>
+\[\logit P(Z_{ik}=1|\uV_{ik}=\uv_{ik},S=k) = \alpha_{0,k} + \uv'_{ik}\ualpha_{1,k}\]   
+</p></li>
+
+<li>Then, estimate \(e_{ijk}\) by
+\[ \widehat{e}_{ijk} = {\exp (\widehat{\alpha}_{0,k} + \uv_{ij}' \widehat{\ualpha}_{v,k})
+         \over 1 + \exp (\widehat{\alpha}_{0,k} + \uv_{ij}' \widehat{\ualpha}_{v,k} )} \]</li>
+
+<li>Let \(\uet_{ij} = \logit \widehat{\ue}^\dagger_{ij}\)</li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org363b4af">
+<div class="slide-header"></div>
+<h3 id="org363b4af">Hierarchical DP (HDP)</h3>
+<ul>
+<li>DP approach often shares information through the full distribution</li>
+<li>Challenging to construct hierarchical DP models</li>
+<li><p>
+M&uuml;ller et al. (2004)
+</p>
+<div>
+\begin{equation*}
+H_j( \cdot \mid \ueta) =
+\varepsilon \underbrace{F_0(\cdot \mid \ueta)}_{common}
++
+(1-\varepsilon)\underbrace{F_j(\cdot \mid \ueta)}_{idiosyncratic}
+\end{equation*}
+
+</div></li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org1ce7840">
+<div class="slide-header"></div>
+<h3 id="org1ce7840">Bayesian Model</h3>
+<div>
+\begin{align*}
+  y_{ij}, \uet_{ij} & |Z=z, S=j \sim MVN(H^{(z)}_j, \Sigma^{(z)}_j) \\
+  H^{(z)}_j &= \epsilon^{(z)} F^{(z)}_0 + (1-\epsilon^{(z)}) F^{(z)}_j \\
+  F^{(z)}_j &\sim DP(G^{(z)}, M^{(z)}_j) \\
+  G^{(z)}   &\sim N(m^{(z)}, B^{(z)})
+\end{align*}
+
+</div>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orged0bac7">
+<div class="slide-header"></div>
+<h3 id="orged0bac7">HDP</h3>
+
+<div class="figure">
+<p><img src="ps_hdp.png" alt="ps_hdp.png" />
+</p>
+</div>
+
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org6bfa38c">
+<div class="slide-header"></div>
+<h3 id="org6bfa38c">Priors</h3>
+<div>
+\begin{align*}
+ m^{(z)}     &\sim N(0, 10^3) \\
+ B^{(z)}     &\sim \text{Inverse-Wishart}(q_B, R_B) \\
+ M^{(z)}_j   &\sim \Gamma(a_M=1, b_M=1) \\ 
+ p(\epsilon) &= \pi_0 \delta_0(\epsilon) + \pi_1 \delta_1(\epsilon) \\
+             & \hspace{0.5cm} + (1-\pi_0-\pi_1) Beta(a_\epsilon=1,b_\epsilon=1)
+\end{align*}
+
+</div>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org31f5c32">
+<div class="slide-header"></div>
+<h3 id="org31f5c32">Inference</h3>
+<div>
+  \begin{align*}
+p(y(z)|S=j) &= \int p(y(z)| \uet, S=j) p(\uet|S=j) d \uet  \\
+&=  \int p(y|Z=z, \uet ,S=j) p(\uet|S=j) d\uet
+\end{align*}
+
+</div>
+
+<ul>
+<li>Use the empirical distribution of \(\uet\) on study \(j\) to
+approximate \(p(\uet|S=j)\)</li>
+<li>The distribution \(p(y|Z=z,\uet,S=j)\) is induced from the
+prediction distribution of \((y, \uet)|Z=z, S=j, \utheta_j\) where
+\(\utheta_j\) represents the DP parameters for \(S=j\)</li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orge14f79b">
+<div class="slide-header"></div>
+<h3 id="orge14f79b">Sensitivity Analysis</h3>
+<ul>
+<li>PS only balances covariates that are used to construct the score</li>
+<li><i>Strong ignorable treatment assignment</i> assumption fails to hold when there
+are <i>unmeasured confounders</i></li>
+<li>Sensitivity analysis desirable to investigate the robustness of the study findings</li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgba18669">
+<div class="slide-header"></div>
+<h3 id="orgba18669">Sensitivity Analysis</h3>
+<ul>
+<li>Let \(U\) denote an unmeasured confounder</li>
+<li>For participants with \(Z=1\), assume
+\[ P(Z=z|\uV,U) = \frac{P(Z=z|\uV) e^{\Delta z}}
+                       { \sum_{z=0}^1 P(Z=z|\uV) e^{\Delta z} } \]</li>
+<li>Equivalent as \[\logit P(Z=1|\uV, U) = \alpha_0 + \uV\ualpha_v + \Delta U\]
+where \(P(U=1)=1\) and \(0\) for \(Z=1\) and 0, respectively</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org82737a5">
+<div class="slide-header"></div>
+<h2 id="org82737a5">Simulation Study</h2>
+<div class="outline-text-2" id="text-org82737a5">
+</div><div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org5fae887">
+<div class="slide-header"></div>
+<h3 id="org5fae887">Data Generation</h3>
+<ul>
+<li>4 clinical studies (\(J\) = 4) including 3 observational studies (\(K\) = 3)
+and 1 randomized study</li>
+<li>10 covariates jointly follow a multivariate normal distribution</li>
+<li>Treatment assignment model
+\[\logit P(Z_{ik}=1) = \alpha_{0,k} + \sum_{p=1}^7\alpha_{p,k} V_{p,i,k}\]</li>
+<li>Response model
+\[Y_{ij} = \beta_{0,j} + \sum_{p=4}^{10} \beta_{p,j} V_{p,i,j} + \epsilon_{ij}\]</li>
+
+</ul>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgcfa987f">
+<div class="slide-header"></div>
+<h3 id="orgcfa987f">Scenarios</h3>
+<ul>
+<li>Scenario I
+<ul>
+<li>same patient populations</li>
+<li>same covariate effects</li>
+<li>same treatment effects</li>
+<li>same treatment assignment for observational studies</li>
+
+</ul></li>
+<li>Scenario II
+<ul>
+<li>different patient populations 
+<ul>
+<li>covariates with <i>different variances</i> among studies</li>
+
+</ul></li>
+
+</ul></li>
+<li>Scenario III
+<ul>
+<li>different patient populations 
+<ul>
+<li>covariates with <i>different variances</i> among studies</li>
+
+</ul></li>
+<li>different treatment assignment for observational studies</li>
+
+</ul></li>
+<li>Scenario IV
+<ul>
+<li>different patient populations 
+<ul>
+<li>covariates with <i>different variances</i> across studies</li>
+<li>covariates with <i>different means</i> across studies</li>
+
+</ul></li>
+<li>different treatment assignment for observational studies</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgfcec149">
+<div class="slide-header"></div>
+<h3 id="orgfcec149">Scenarios</h3>
+
+<div class="figure">
+<p><img src="simu_sce1.png" alt="simu_sce1.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org1ef8659">
+<div class="slide-header"></div>
+<h3 id="org1ef8659">Scenarios</h3>
+
+<div class="figure">
+<p><img src="simu_sce2.png" alt="simu_sce2.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org3a3f103">
+<div class="slide-header"></div>
+<h3 id="org3a3f103">Results</h3>
+
+<div class="figure">
+<p><img src="simu_rst_I.png" alt="simu_rst_I.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgc42c5b8">
+<div class="slide-header"></div>
+<h3 id="orgc42c5b8">Results</h3>
+
+<div class="figure">
+<p><img src="simu_rst_ii.png" alt="simu_rst_ii.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org63f5b60">
+<div class="slide-header"></div>
+<h3 id="org63f5b60">Results</h3>
+
+<div class="figure">
+<p><img src="simu_rst_iii.png" alt="simu_rst_iii.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orga693257">
+<div class="slide-header"></div>
+<h3 id="orga693257">Results</h3>
+
+<div class="figure">
+<p><img src="simu_rst_iv.png" alt="simu_rst_iv.png" />
+</p>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgdf8af0d">
+<div class="slide-header"></div>
+<h2 id="orgdf8af0d">Discussion</h2>
+<div class="outline-text-2" id="text-orgdf8af0d">
+</div><div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org07f78f6">
+<div class="slide-header"></div>
+<h3 id="org07f78f6">Summary</h3>
+<ul>
+<li>Propose a Bayesian non-parametric approach to address issues in CER</li>
+<li>Propensity score associate RCTs and observational studies
+<ul>
+<li>Why not model \((Y, V)\)?</li>
+
+</ul></li>
+<li>Hierarchical DP model
+<ul>
+<li>Why not model \((Y_{ij}, e_{ij})\)?</li>
+
+</ul></li>
+<li>Causal inference
+<ul>
+<li>Which study should be the focus of the inference?</li>
+<li>Arm-based approach</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c/t',
+rollingLinks: true,
+keyboard: true,
+overview: true,
+margin: 0.10,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'convex', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }]
+});
+</script>
+</body>
+</html>

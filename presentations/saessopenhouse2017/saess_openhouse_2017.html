@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Small Area Estimation and Spatial Statistics <br> <span class="underline">R and Interactive Maps</span></title>
+<meta name="author" content="(Chenguang Wang)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/sky.css" id="theme"/>
+
+<link rel="stylesheet" href="./presentation.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Small Area Estimation and Spatial Statistics <br> <span class="underline">R and Interactive Maps</span></h1><h2 class="author">Chenguang Wang</h2><h2 class="date">SAESS OPEN HOUSE 2017</h2><p class="date">Created: 2017-11-09 Thu 11:54</p>
+</section>
+
+<section>
+<section id="slide-orge3793cc">
+<div class="slide-header"></div>
+<h2 id="orge3793cc"><a href="https://cran.r-project.org/web/views/Spatial.html">Spatial Statistics in R</a></h2>
+<div class="outline-text-2" id="text-orge3793cc">
+</div><div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org1d62cf5">
+<div class="slide-header"></div>
+<h3 id="org1d62cf5">Classes and methods</h3>
+<ul>
+<li><i>sp</i> package
+<ul>
+<li>provides spacial classes including <code>points</code>, <code>lines</code>, <code>polygons</code> and <code>grids</code></li>
+<li>each class has attributes describing what is actually registered (e.g.
+measured) for a certain location or area</li>
+<li>provides methods including <code>plot</code>, <code>print</code>, <code>summary</code>, select spatial items, sample
+points from a set of polygons, on a set of lines or from a gridded area,
+get or set the projection, set or retrieve coordinates, etc.</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><i>sf</i> package
+<ul>
+<li>simple features refer to an ISO standard (ISO 19125-1:2004) that
+describes how objects in the real world can be represented on computers</li>
+<li>provides a complete implementation of <code>simple features</code>
+<ul>
+<li><code>POINT</code>, <code>LINESTRING</code>, <code>POLYGON</code>, <code>MULTIPOINT</code>, <code>MULTILINESTRING</code>,
+<code>MULTIPOLYGON</code>, <code>GEOMETRYCOLLECTION</code></li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section >
+<ul>
+<li><i>raster</i> package introduces many GIS methods</li>
+<li><i>gdistance</i> and <i>geosphere</i> packages calculate distance, area and route on
+geographic grids</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orgb9da941">
+<div class="slide-header"></div>
+<h3 id="orgb9da941">Reading and writing spatial data</h3>
+<ul>
+<li><i>rgdal</i> package reads vector-based spatial data in different formats
+<ul>
+<li>shapefiles, MapInfo files, GeoJSON and GPS (with a GPX extension)</li>
+
+</ul></li>
+<li><i>rgeos</i> package reads and writes well-known text (<code>WKT</code>) geometry</li>
+<li><i>wkb</i> package reads and writes well-known binary (<code>WKB</code>) geometry</li>
+<li><i>maptools</i> package writes map polygon files to be read by <code>WinBUGS</code> and
+<code>Stata</code></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org8024a66">
+<div class="slide-header"></div>
+<h3 id="org8024a66">Visualisation</h3>
+<ul>
+<li><i>RColorBrewer</i> package helps to create colorful maps</li>
+<li><i>mapview</i> package provides methods to interactively view spatial objects</li>
+<li><i>ggmap</i> package provides spatial visualisation with Google Maps and
+OpenStreetMap</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org6c5c0f2">
+<div class="slide-header"></div>
+<h3 id="org6c5c0f2">Analyze Spatial Data</h3>
+<ul>
+<li>Point pattern analysis</li>
+<li>Geostatistics</li>
+<li>Disease mapping and areal data analysis</li>
+<li>Spatial regression</li>
+<li>Ecological analysis</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org7331344">
+<div class="slide-header"></div>
+<h2 id="org7331344">Spatial Statistics on Interactive Maps</h2>
+<div class="outline-text-2" id="text-org7331344">
+</div><div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org700152f">
+<div class="slide-header"></div>
+<h3 id="org700152f">Interactive maps on Web</h3>
+<div class="outline-text-3" id="text-org700152f">
+</div><div class="slide-footer"></div>
+</section>
+<section id="slide-org13ad97f">
+<div class="slide-header"></div>
+<h4 id="org13ad97f"><a href="http://shiny.rstudio.com/">Shiny</a></h4>
+<ul>
+<li><a href="https://www.rstudio.com/">RStudio</a> product</li>
+<li>A web application framework for R</li>
+<li>Turns R code into interactive web applications</li>
+<li>No HTML, CSS, or JavaScript knowledge required</li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org17549ff">
+<div class="slide-header"></div>
+<h4 id="org17549ff">Leaflet</h4>
+<ul>
+<li>One of the most popular open-source JavaScript libraries for interactive maps</li>
+<li><i>leaflet</i> package integrates and controls Leaflet maps in R</li>
+<li>Features
+<ul>
+<li>interactive panning/zooming</li>
+<li>compose maps using arbitrary combinations of map tiles, markers,
+polygons, lines, popups, GeoJSON</li>
+<li>easily render spatial objects from the sp or sf packages, or data frames
+with latitude/longitude columns</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgaf2fdfa">
+<div class="slide-header"></div>
+<h4 id="orgaf2fdfa">Example</h4>
+<div class="org-src-container">
+
+<pre><code class="R" >output$map <- renderLeaflet({
+    leaflet() %>%
+        addTiles() %>%
+        setView(lat  = cur.center[1],
+                lng  = cur.center[2],
+                zoom = 6);
+})
+
+observe({
+    proxy <- leafletProxy("map");
+    proxy %>%
+        clearGroup("poly") %>%
+        addPolygons(data=cur.map$map,
+                    stroke=TRUE,
+                    color="black",
+                    weight=2,
+                    fill=TRUE,
+                    fillOpacity = ifelse(is.null(cur.fill), 0, 0.3),
+                    smoothFactor=0.05,
+                    fillColor = pal(cur.fill),
+                    layerId = ~NAME_1,
+                    group="poly");
+})
+</code></pre>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orge27e47d">
+<div class="slide-header"></div>
+<h3 id="orge27e47d">Demos</h3>
+<ul>
+<li>Performance Monitoring and Accountability 2020 (PMA2020)
+<ul>
+<li><a href="https://olssol2.shinyapps.io/jhpma/">https://olssol2.shinyapps.io/jhpma/</a></li>
+
+</ul></li>
+<li>International Centers of Excellence for Malaria Research 
+<ul>
+<li><a href="https://olssol2.shinyapps.io/icemr">https://olssol2.shinyapps.io/icemr</a></li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"></div>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: true,
+keyboard: true,
+overview: true,
+margin: 0.20,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'convex', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }]
+});
+</script>
+</body>
+</html>

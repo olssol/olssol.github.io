@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Total Product Life Cycle of Statistical Research with A Case Study on Incomplete Data Analysis</title>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/serif.css" id="theme"/>
+
+<link rel="stylesheet" href="./presentation.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./images/missing-people.png"><h1 class="title">Total Product Life Cycle of Statistical Research with A Case Study on Incomplete Data Analysis</h1><h2 class="date">Regeneron Pharmaceuticals, Inc.</h2><p class="date">Created: 2018-06-26 Tue 13:18</p>
+</section>
+
+<section>
+<section id="slide-org469217c" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h2 id="org469217c">Total Product Life Cycle</h2>
+<div class="outline-text-2" id="text-org469217c">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgc170433" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgc170433">Total Product Life Cycle</h3>
+<ul>
+<li>Total Product Life Cycle (TPLC) is the process from the concept and design
+of a product through commercialization and ongoing safety monitoring</li>
+<li>FDA/CDRH TPLC database integrates premarket and postmarket information
+about medical devices, including information from Premarket Approvals
+(PMA), Premarket Notifications (510[k]), Adverse Events, and Recalls</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org58d32f5" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org58d32f5">What is the TPLC of statistical research?</h3>
+<ul>
+<li>Identify a problem</li>
+<li>Develop a method to solve the problem</li>
+<li>Disseminate the solution</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgbcdd449" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h2 id="orgbcdd449">Case Study: Incomplete data</h2>
+<div class="outline-text-2" id="text-orgbcdd449">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org68e773d" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org68e773d">General setting</h3>
+<ul>
+<li>Consider a <i>randomized</i> clinical study</li>
+<li>Outcomes scheduled to be measured at pre-specified time points after
+randomization</li>
+<li><i>Goal</i>: To evaluate the efficacy of a treatment</li>
+<li><i>Issue</i>: Clinical evaluations <i>unobserved</i> due to
+<ul>
+<li>lost to follow up</li>
+<li>withdraw of consent</li>
+<li>out-of-window visit</li>
+<li><i>death</i></li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section  data-background="./images/missing-people-light.png" data-background-repeat="t">
+
+<div class="figure">
+<p><img src="./images/missingtypes.png" alt="missingtypes.png" width="600px" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Scenarios of incomplete data</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org536a46a" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org536a46a">Solution</h3>
+<ul>
+<li>Evaluate treatment effects <i>conditional</i> on survival</li>
+
+</ul>
+</section>
+<section  data-background="./images/missing-people-light.png" data-background-repeat="t">
+
+<ul>
+<li>Evaluate <i>causal</i> treatment effects for principal stratum</li>
+<li><i>Joint modeling</i> survival and functional outcomes</li>
+<li><i>Composite</i> endpoint combining survival and functional outcomes
+<ul>
+<li>Primary endpoint: defined as a <i>composite</i> or a mix of both the survival
+and the functional (longitudinal) outcomes</li>
+<li>Simple and useful if the composite endpoint
+<ul>
+<li>is of clinical interest</li>
+<li>can be ordered in a meaningful way</li>
+
+</ul></li>
+<li>Effects of treatment on survival and on the functional outcome cannot
+be separated</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org644f483" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org644f483">Research goal</h3>
+<ul>
+<li>To propose a <i>composite endpoint approach</i> that handles both deaths and
+intermittent missing data among subjects alive at the assessment times</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org0e49b58" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h2 id="org0e49b58">Method: Endpoint and Test</h2>
+<div class="outline-text-2" id="text-org0e49b58">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgff95ad1" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgff95ad1">Notation</h3>
+<ul>
+<li>\(T=0,1\): treatment assignment</li>
+<li>\(Y_0\): baseline measure at \(t_0\)</li>
+<li>\(Y_1, \ldots, Y_K\): post-randomization outcomes at \(t_1, \ldots, t_K\)</li>
+<li>\(L\): survival time</li>
+<li>\(A_k=I(L>t_k)\): survival status at \(t_k\)</li>
+<li>\(Z=g(Y_0,\ldots,Y_K)\): primary functional endpoint
+<ul>
+<li>e.g. \(Z=Y_K\), \(Z=Y_K-Y_0\)</li>
+<li>only defined when \(A_K=1\)</li>
+
+</ul></li>
+<li>For subjects alive at the end of the study (\(A_K=1\))
+<ul>
+<li>\(\tau_k\): missingness indicator of \(Y_k\) (1: observed, 0: missing)</li>
+<li>\(S=(\tau_1, \ldots, \tau_K)\): missing pattern</li>
+<li>\(Y_{obs}=\{Y_k: \tau_k=1, k \geq 1\}\): observed functional outcome</li>
+<li>\(Y_{mis}=\{Y_k: \tau_k=0, k \geq 1\}\): missing functional outcome</li>
+
+</ul></li>
+<li>\(X\): baseline covariates</li>
+<li>\(\overline{Y}_k\): \((Y_1,\ldots,Y_k)\)</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org2a28bd2" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org2a28bd2">Specification</h3>
+<ul>
+<li>Consider the <i>primary endpoint</i> to be a finite-valued random variable \(U\)</li>
+<li>\(U\) assigns a <i>score</i> to each subject</li>
+<li>For subjects who die prior to the end of the study, \(t_K\)
+<ul>
+<li>score assigned according to their survival time \(L\)</li>
+<li>shorter survival times assigned with lower scores</li>
+
+</ul></li>
+<li>For subjects who survive past \(t_K\)
+<ul>
+<li>score assigned according to their functional status \(Z\)</li>
+<li>score higher than those who died prior to \(t_K\)</li>
+<li>lower functional status assigned with lower scores</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgbc902bb" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgbc902bb">Ranking examples</h3>
+<ul>
+<li>\(A_{K,i}=A_{K,j}=1\)
+<ul>
+<li>\(Z_i > Z_j\): subject \(i\) ranked better than subject \(j\)</li>
+<li>\(Z_i=Z_j\): subjects \(i\) and \(j\) ranked the same</li>
+
+</ul></li>
+<li>\(A_{K,i}=A_{K,j}=0\)
+<ul>
+<li>\(L_i > L_j\): subject \(i\) ranked better than subject \(j\)</li>
+<li>\(L_i=L_j\): subjects \(i\) and \(j\) ranked the same</li>
+
+</ul></li>
+<li>\(A_{K,i}=1\), \(A_{K,j}=0\)
+<ul>
+<li>subject \(i\) ranked better than subject \(j\)</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org222b9b6" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org222b9b6">Treatment effect</h3>
+<ul>
+<li>Let subject \(i\) and \(j\) represent a random sample randomized to \(T=0\)
+and \(T=1\), respectively</li>
+<li>Define the treatment effect parameter \(\theta\) to be
+\[\theta = P(U_i < U_j) - P(U_i > U_j) \]
+<ul>
+<li>the probability that the outcome for a random individual randomized to
+treatment \(T=0\) is less than the outcome of a random individual randomized
+to treatment \(T=1\)</li>
+<li><i>minus</i></li>
+<li>the probability that the outcome for a random individual randomized to
+treatment \(T=0\) is greater than the outcome of a random individual
+randomized to treatment \(T=1\)</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgefaf5e5" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgefaf5e5">Estimation of \(\theta\)</h3>
+<p>
+In the absence of missing data, estimate \(\theta\) by
+ \[
+      \widehat{\theta} = \frac{1}{n_0 n_1} \sum_{i: T_i=0} \sum_{j : T_j=1} \{ I(U_i
+      < U_j) - I(U_i > U_j) \}
+    \]
+ where \(n_0 = \sum_i (1-T_i)\) and \(n_1 = \sum_i T_i\)
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org0b50aec" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org0b50aec">Quantiles</h3>
+<ul>
+<li><i>Quantiles</i> (e.g. median) of the composite endpoint may further quantify
+the treatment effect</li>
+<li>Clinically easier to be interpreted</li>
+<li>A necessary supplement to the primary rank analysis</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgececc5c" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h2 id="orgececc5c">Method: Missing data Imputation</h2>
+<div class="outline-text-2" id="text-orgececc5c">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org8101cf9" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org8101cf9">Scheme</h3>
+
+<div class="figure">
+<p><img src="./images/subjects.png" alt="subjects.png" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgbd9c2d7" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgbd9c2d7">Benchmark assumptions</h3>
+<p>
+\[f(Y_{mis} | A_K=1,Y_{obs}, Y_0, X, T,S=s) = f(Y_{mis} | A_K=1,
+        Y_{obs}, Y_0, X, T, S=\mathbf{1}) \qquad \forall s \neq \mathbf{1} \]
+</p>
+
+<ul>
+<li>\(\mathbf{1}\): a \(K\)-dimensional vector of \(1\)'s</li>
+<li>\(S=\mathbf{1}\): <i>completers</i></li>
+<li><i>Complete case missing value</i> (CCMV) restrictions</li>
+<li>Applied to the missing data patterns for patients alive at \(t_K\)</li>
+
+</ul>
+
+</section>
+<section  data-background="./images/missing-people-light.png" data-background-repeat="t">
+<ul>
+<li>Peter 
+<ul>
+<li>on the treatment arm</li>
+<li>male, age 50</li>
+<li>\(Y_1=10\) and \(Y_3=50\)</li>
+<li>\(Y_2\) <i>missing</i></li>
+
+</ul></li>
+
+<li>Peter's group 
+<ul>
+<li>on the treatment arm</li>
+<li>male, age 50</li>
+<li>\(Y_1=10\) and \(Y_3=50\)</li>
+<li>\(Y_2\) <i>observed</i></li>
+
+</ul></li>
+
+<li>Benchmark assumption 
+<ul>
+<li>Peter's \(Y_2\) follows <i>the same distribution</i> as the \(Y_2\)'s from Peter's
+group</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org5e05381" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org5e05381">Modeling strategy</h3>
+<ul>
+<li>Sequential factorization
+\[f(\overline{Y}_K | A_K=1, Y_0,X,T,S=\mathbf{1}) = \prod_{k=1}^K
+      f(Y_k|A_K=1, \overline{Y}_{k-1},  X, T, S=\mathbf{1})\]</li>
+<li>Specify
+\[Y_k|\overline{Y}_{k-1}, Y_0, X, T=t, S=\mathbf{1} =
+        \mu_{k,t}(\overline{Y}_{k-1}, Y_0, X; \alpha_{k,t}) + \epsilon_{k,t} \]
+<ul>
+<li>\(\mu_{k,t}\): mean function, e.g.
+\[\mu_{k,t}(\overline{Y}_{k-1}, Y_0, X; \alpha_{k,t}) =\alpha_{k,t,0} + \alpha_{k,t,1}
+        \overline{Y}_{k-1} + \alpha_{k,t,2} Y_0 + \alpha_{k,t,3} X\]</li>
+<li>\(\epsilon_{k,t}\): residuals</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgbd71c06" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgbd71c06">Estimation</h3>
+<ul>
+<li>\(\alpha_{k,t}\): estimated using <i>least square estimator</i>
+\[\widehat{\alpha}_{k,t} = \text{argmin} \left \{
+     \sum_{i=1}^n I(T_i=t) A_{K,i} \left( \prod_{k=1}^K
+     \tau_{k,i} \right) \epsilon_{k,t,i}^2  \right \}
+     \]</li>
+
+<li>\(\epsilon_{k,t} \sim F_{k,t}\)
+<ul>
+<li>\(F_{k,t} = N(0, \sigma^2_{k,t})\) under normality assumption</li>
+<li>\(F_{k,t}\) estimated by kernel density estimator, e.g.
+\[ \widehat{f}_{k,t} (x) \propto \sum_{i=1}^n I(T_i=t) A_{K,i} \left( \prod_{k=1}^K
+       \tau_{k,i} \right) \phi \left ( {x - \epsilon_{k,t,i}
+       \over h} \right )\]
+where \(h\) is the bandwidth</li>
+
+</ul></li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org1588bc5" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org1588bc5">Numerical sampling</h3>
+<ul>
+<li>Goal: to draw samples of \(Y_{mis}\) for <i>each individual</i> with
+\(A_K=1\) and  \(S \neq \mathbf{1}\) from
+\[f(Y_{mis} | A_K=1,Y_{obs}, Y_0, X, T,S=s) \propto  f(Y_{mis} | A_K=1, Y_{obs}, Y_0, X, T, S=\mathbf{1})\]</li>
+<li>Numerical sampling necessary in general</li>
+<li>Propose to apply <i>random-walk Metroplis-Hastings</i> algorithm for drawing
+samples</li>
+
+</ul>
+
+</section>
+<section  data-background="./images/missing-people-light.png" data-background-repeat="t">
+<ol>
+<li>Set \(j=0\). Choose arbitrary initial values for \(Y_{mis}\), denoted by
+\(Y_{mis}^{(0)}\). Let \(Z^{(0)}\) be the primary functional endpoint with data
+\((Y_{obs},Y_{mis}^{(0)})\)</li>
+<li>Set \(j=j+1\)</li>
+<li>Generate \(Y_{mis}'\) from a (multivariate) Gaussian distribution with mean
+\(Y_{mis}^{(j-1)}\) and variance \(\Sigma\)</li>
+
+</ol>
+
+</section>
+<section  data-background="./images/missing-people-light.png" data-background-repeat="t">
+
+<ol>
+<li value="4"><p>
+Calculate the acceptance ratio as
+</p>
+<div>
+\begin{align*}
+a
+=& {  f(Y'_{mis} | A_K=1,Y_{obs}, Y_0, X, T,S=\mathbf{1})
+\over  f(Y^{(j-1)}_{mis}|A_K=1,Y_{obs}, Y_0, X, T,S=\mathbf{1})} \\
+=& {  f(Y'_{mis}, Y_{obs}| A_K=1, Y_0, X, T,S=\mathbf{1})
+\over  f(Y^{(j-1)}_{mis}, Y_{obs}| A_K=1, Y_0, X, T,S=\mathbf{1})}
+\end{align*}
+
+</div>
+<p>
+where \(Z'\) and \(Z^{(j-1)}\) are the primary functional endpoints with data
+\((Y_{obs},Y_{mis}')\) and \((Y_{obs},Y_{mis}^{(j-1)})\), respectively
+</p></li>
+
+</ol>
+
+</section>
+<section  data-background="./images/missing-people-light.png" data-background-repeat="t">
+<ol>
+<li value="5">Accept \(Y_{mis}^{(j)} = Y'_{mis}\) with probability \(\min(1,a)\) and
+\(Y_{mis}^{(j)} = Y^{(j-1)}_{mis}\) with probability \(1-\min(1,a)\)</li>
+<li>Repeat <i>Steps 2-5</i> until the Markov chain converges</li>
+<li>Draw random samples from the set \(\{Y_{mis}^{(j_0)}, Y_{mis}^{(j_0+1)}, \ldots\}\) as
+the imputed missing values, where \(j_0\) corresponds to the number of burn-in</li>
+
+</ol>
+</section>
+</section>
+<section>
+<section id="slide-orgb962408" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgb962408">Multiple imputation</h3>
+<ul>
+<li>Draw \(M\) copies \(Y_{mis}\) for each individual with \(A_K=1\) and \(S\neq \mathbf{1}\)</li>
+<li>Create \(M\) complete datasets</li>
+<li>For each complete dataset \(m\), estimate \(\theta\) by \(\widehat{\theta}_m\)</li>
+<li>Overall estimator of \(\theta\)
+\[\tilde{\theta} = \frac{1}{M} \sum_{m=1}^M \widehat{\theta}_m\]</li>
+<li>Confidence intervals constructed by non-parametric <i>bootstrap</i></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org4ea5245" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h2 id="org4ea5245">Method: Sensitivity Analysis</h2>
+<div class="outline-text-2" id="text-org4ea5245">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgb586a41" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgb586a41">Sensitivity analysis</h3>
+<ul>
+<li>Benchmark assumptions (CCMV) <i>untestable</i></li>
+<li><i>Sensitivity analysis</i> essential to evaluate the robustness of
+inferences to deviations from benchmark assumptions</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org1b9a522" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org1b9a522">Exponential tilting</h3>
+<ul>
+<li>Exponential tilting model
+\[f'(y) \propto e^{\beta y} f(y)\]</li>
+
+<li>Constructs a neighborhood of distributions \(f'(y)\)
+<ul>
+<li>centered around \(f(y)\)</li>
+<li>indexed by <i>sensitivity parameter</i> \(\beta\)</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org15d8f4f" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org15d8f4f">Example</h3>
+<ul>
+<li>\(f(y)\) multivariate normal 
+\[Y \sim N(\mu, \Sigma)\]</li>
+
+<li>Close form can be derived for \(f'(y)\)
+\[Y' \sim N(\mu+\Sigma \beta, \Sigma)\]</li>
+
+</ul>
+
+</section>
+<section  data-background="./images/missing-people-light.png" data-background-repeat="t">
+
+
+<div class="figure">
+<p><img src="./images/exptilt.png" alt="exptilt.png" width="600" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org94a53ab" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org94a53ab">Dimension of sensitivity parameters</h3>
+<ul>
+<li><p>
+Recall: benchmark assumptions
+</p>
+<div>
+\begin{align*}
+f(Y_{mis} | A_K=1, &Y_{obs}, Y_0, X, T=t,S=s) \\ = & f(Y_{mis} | A_K=1,
+Y_{obs}, Y_0, X, T=t, S=\mathbf{1})
+\end{align*}
+
+</div></li>
+<li><p>
+Sensitivity parameters typically introduced as follows:
+</p>
+<div>
+\begin{align*}
+f(Y_{mis} | A_K=1, &Y_{obs}, Y_0, X, T=t,S=s)  \\ \propto & 
+\exp \{\beta_{t,s} Y_{mis}\} f(Y_{mis} | A_K=1,
+Y_{obs}, Y_0, X, T=t, S=\mathbf{1})
+\end{align*}
+
+</div></li>
+<li>Sensitivity parameters \(\beta_{t,s}\)
+<ul>
+<li>depends on treatment and missing pattern</li>
+<li><i>dimension</i> too high</li>
+<li>difficult to set sensitivity analysis scenarios</li>
+<li>difficult to interpret and summarize results</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org83fc22d" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org83fc22d">Sensitivity analysis assumption</h3>
+<div>
+\begin{align*}
+f(Y_{mis} | A_K=1, & Y_{obs}, Y_0, X, T=t,S=s) \\
+\propto & \exp \{\beta_{t} Z\}
+f(Y_{mis} | A_K=1, Y_{obs}, Y_0, X, T=t, S=\mathbf{1})
+\end{align*}
+
+</div>
+
+<ul>
+<li>\(Z\): primary endpoint, clinical interest</li>
+<li>\(\beta_t\): treatment specific, dimension 2 regardless of \(K\)</li>
+<li>\(\beta_t=0\): benchmark assumptions</li>
+<li>\(|\beta_t|\): distance (in the units of \(Z\)) from benchmark assumptions</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orge966a65" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orge966a65">Example</h3>
+<ul>
+<li>Peter 
+<ul>
+<li>on the treatment arm</li>
+<li>male, age 50</li>
+<li>\(Y_1=10\) and \(Y_3=50\)</li>
+<li>\(Y_2\) <i>missing</i></li>
+
+</ul></li>
+
+<li>Peter's group 
+<ul>
+<li>on the treatment arm</li>
+<li>male, age 50</li>
+<li>\(Y_1=10\) and \(Y_3=50\)</li>
+<li>\(Y_2\) <i>observed</i></li>
+
+</ul></li>
+
+<li>Benchmark assumption 
+<ul>
+<li>Peter's \(Y_2\) follows a distribution that is <i>centered</i> at the \(Y_2\)'s
+from Peter's group <i>with shifts quantified by sensitivity parameters</i></li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgeb5e57f" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h2 id="orgeb5e57f">Method: Application</h2>
+<div class="outline-text-2" id="text-orgeb5e57f">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgb9b3560" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgb9b3560">A clinical study</h3>
+<ul>
+<li>Randomized, double-blind, placebo-controlled Phase III study</li>
+<li>Intent-to-treat population: <i>advanced</i> non-small cell lung
+<i>cancer</i> subjects</li>
+<li>To evaluate the efficacy of a drug</li>
+<li>Functional outcome <i>lean body mass</i> (LBM) scheduled to be measured at
+baseline (\(Y_0\)), 6 weeks (\(Y_1\)) and 12 weeks (\(Y_2\))</li>
+<li>Primary functional endpoint: \(Z={(Y_2+Y_1) \over 2} - Y_0\)</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org84c7a14" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org84c7a14">Death and missingness</h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Placebo</td>
+<td class="org-left">Drug</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">\(n=157\)</td>
+<td class="org-left">\(n=322\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Died Prior to Wk 12</td>
+<td class="org-left">24 (15.3%)</td>
+<td class="org-left">54 (16.8%)</td>
+</tr>
+
+<tr>
+<td class="org-left">Survivors with complete data</td>
+<td class="org-left">93 (59.2%)</td>
+<td class="org-left">185 (57.5%)</td>
+</tr>
+
+<tr>
+<td class="org-left">Survivors missing only Wk 6</td>
+<td class="org-left">3  (1.9%)</td>
+<td class="org-left">17 (5.3%)</td>
+</tr>
+
+<tr>
+<td class="org-left">Survivors missing only Wk 12</td>
+<td class="org-left">17  (10.8%)</td>
+<td class="org-left">31 (9.6%)</td>
+</tr>
+
+<tr>
+<td class="org-left">Survivors missing both Wks 6, 12</td>
+<td class="org-left">20 (12.7%)</td>
+<td class="org-left">35 (10.9%)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section>
+<section id="slide-orgb0a71e3" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgb0a71e3">Baseline covariates</h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Covariates</td>
+<td class="org-left">Levels</td>
+</tr>
+
+<tr>
+<td class="org-left">ECOG</td>
+<td class="org-left">0:\(\{0,1\}\), 1:\(\{2\}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">AGE</td>
+<td class="org-left">0:\(\leq 65\), 1:\(>65\)</td>
+</tr>
+
+<tr>
+<td class="org-left">GENDER</td>
+<td class="org-left">0:M, 1:F</td>
+</tr>
+
+<tr>
+<td class="org-left">BMI</td>
+<td class="org-left">0:\(\leq 18.5\), 1:\(> 18.5\)</td>
+</tr>
+
+<tr>
+<td class="org-left">WEIGHT LOSS</td>
+<td class="org-left">0:\(\leq 10\%\), 1:\(> 10\%\) (in 6 months prior)</td>
+</tr>
+
+<tr>
+<td class="org-left">Y0</td>
+<td class="org-left">Continuous</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section>
+<section id="slide-orgad8c343" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgad8c343">Model</h3>
+<p>
+Specify \(\mu_{k,t}(\overline{Y}_{k-1}, Y_0, X; \alpha_{k,t})\) as follows:
+</p>
+<div>
+\begin{align*}
+  \mu_{1,t,i} &= \alpha_{1,t,1} + \alpha_{1,t,2}  Y_{0,i} + \alpha_{1,t,3} ECOG_i + \alpha_{1,t,4} AGE_i \\
+  &\hspace{1cm} +\alpha_{1,t,5} G_i +\alpha_{1,t,6} BMI_i + \alpha_{1,t,7} WL_i\\
+  \mu_{2,t,i} &= \alpha_{2,t,1} + \alpha_{2,t,2}  Y_{0,i} + \alpha_{2,t,3} ECOG_i + \alpha_{2,t,4} AGE_i \\
+  &\hspace{1cm} +\alpha_{2,t,5} G_i +\alpha_{2,t,6} BMI_i +
+  \alpha_{2,t,7} WL_i\\
+  &\hspace{1cm} +\alpha_{2,t,8} Y_{1,i}
+\end{align*}
+
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org98ff68d" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org98ff68d">Model fitting diagnosis</h3>
+
+<div class="figure">
+<p><img src="./images/fitdiag.png" alt="fitdiag.png" width="1000" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgb64dbb4" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgb64dbb4">Analysis under benchmark assumptions</h3>
+<ul>
+<li>10 imputed datasets generated</li>
+<li><p>
+1000 bootstrap samples
+</p>
+
+</section>
+<section  data-background="./images/missing-people-light.png" data-background-repeat="t"></li>
+
+</ul>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> Hypotheses Testing</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">\(\widehat{\theta}\) (95% CI)</td>
+<td class="org-left">p-value</td>
+</tr>
+
+<tr>
+<td class="org-left">Result</td>
+<td class="org-left">0.30(0.19,0.40)</td>
+<td class="org-left">\(<0.0001\)</td>
+</tr>
+</tbody>
+</table>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 2:</span> Median</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">\(\widehat{p}_{50}\)  (95% CI)</td>
+</tr>
+
+<tr>
+<td class="org-left">Result</td>
+<td class="org-left">Drug</td>
+<td class="org-left">0.67( 0.45, 0.89)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Placebo</td>
+<td class="org-left">-0.92(-1.43,-0.28)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section>
+<section id="slide-org4382ea6" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org4382ea6">Cumulative Plot</h3>
+
+<div class="figure">
+<p><img src="./images/hcomposite.png" alt="hcomposite.png" width="500" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org8073627" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org8073627">Choice of sensitivity parameters</h3>
+
+<div class="figure">
+<p><img src="./images/hsenimp.png" alt="hsenimp.png" width="800" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org243b905" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org243b905">Result</h3>
+
+<div class="figure">
+<p><img src="./images/hcontour.png" alt="hcontour.png" width="500" />   
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org108c135" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org108c135">Conclusion</h3>
+<ul>
+<li>There is a <i>significant difference</i> between the Placebo and the investigational
+arms in their composite endpoints of survival and average LBM change</li>
+<li>The difference favors <i>the investigational arm</i></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orge46d217" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h2 id="orge46d217">Method: Summary</h2>
+<div class="outline-text-2" id="text-orge46d217">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org2d2d9bf" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org2d2d9bf">Summary</h3>
+<ul>
+<li>Propose a <i>composite endpoint</i> approach for evaluating treatment effects
+in randomized clinical trials with <i>death</i> and <i>intermittent missingness</i></li>
+<li>Apply <i>complete case missing-variable restrictions</i>  for
+handling missing data in survivors</li>
+<li>Apply <i>exponential tilting</i> model for sensitivity analysis</li>
+<li>Introduce a <i>parsimonious</i> way of introducing sensitivity parameters</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgda4142c" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h2 id="orgda4142c">Software for Statisticians</h2>
+<div class="outline-text-2" id="text-orgda4142c">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org38b99af" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org38b99af">Raw code</h3>
+<div class="outline-text-3" id="text-org38b99af">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org009a347" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h4 id="org009a347">R code</h4>
+<div class="org-src-container">
+
+<pre><code class="R" >##table of missing pattern
+get.mis.table <- function(data.all, duration, vtrt, vsurv, voutcome, trt.len=NULL) {
+    a.trt    <- get.trt(data.all[,vtrt]);
+    mis.pat  <- get.miss.pattern(length(voutcome));
+
+    if (is.null(trt.len)) {
+        trt.len <- paste(toupper(vtrt), "=", a.trt, sep="");
+    }
+
+    rst <- NULL;
+    for (i in 1:length(a.trt)) {
+        subg      <- data.all[which(a.trt[i] == data.all[,vtrt]),
+                              c(vsurv, voutcome)];
+        nsub      <- nrow(subg);
+        cur.alive <- subg[which(subg[,vsurv] > duration),voutcome];
+        n.dead    <- nsub-nrow(cur.alive);
+
+        cur.y <- !is.na(cur.alive);
+        inx.y <- table(1+get.compose(cur.y));
+
+        n.p               <- rep(0, nrow(mis.pat));
+        names(n.p)        <- rownames(mis.pat);
+        n.p[names(inx.y)] <- inx.y;
+
+        char.rst <- sapply( c(n.dead, n.p), function(x) { sprintf("%i(%5.2f%%)", x, 100*x/nsub)});
+        char.rst <- c(char.rst, nsub);
+        rst      <- cbind(rst, char.rst);
+    }
+
+    rst <- cbind(rbind("", mis.pat, ""), rst);
+    colnames(rst) <- c(paste(voutcome, "Observed", sep=" "), trt.len);
+    rownames(rst) <- c("Deaths on study",
+                       paste("S=", 1:nrow(mis.pat), sep=""),
+                       "Total");
+
+    rst
+}    
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org1df85ff" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h4 id="org1df85ff">C code</h4>
+<div class="org-src-container">
+
+<pre><code class="C" >//order two subjects
+void rankij(double *s1, double *z1, double *s2, double *z2,
+            double *duration, double *cuts, double *cutz, int *rst) {
+
+  double tmp;
+
+  //both alive
+  if ((*s1 > *duration) &&  (*s2 > *duration)) {
+    tmp = *z1 - *z2;
+    if (tmp > *cutz) {
+      *rst = 1;
+    } else if (tmp < -*cutz) {
+      *rst = -1;
+    } else {
+      *rst = 0;
+    }
+  } else if ((*s1 <= *duration) &&  (*s2 <= *duration)) {
+    tmp = *s1 - *s2;
+    if (tmp > *cuts) {
+      *rst = 1;
+    } else if (tmp < -*cuts) {
+      *rst = -1;
+    } else {
+      *rst = 0;
+    }
+  } else {
+    if (*s1 > *duration) {
+      *rst = 1;
+    } else {
+      *rst = -1;
+    }
+  }
+}
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org748f15f" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h4 id="org748f15f">STAN code</h4>
+<div class="org-src-container">
+
+<pre><code class="R" >data {
+    int<lower=1>          NY;   //total no. y
+    int<lower=0>          NOBS; //no of observed y 
+    vector[NOBS+1]        YOBS; //add dummy y to handle nobs=0
+    int<lower=1>          NX;   //no. covariates
+    vector[NX]            X;    //covariates
+    matrix[NY, NX+3]      COEF; //coefficents 1st column is sigma
+
+    int<lower=0, upper=1> IMIS[NY];
+    int<lower=1>          INX[NY];
+
+    //residuals
+    int<lower=0, upper=1> ASSUMENORMAL;
+    int<lower=1>          NRES;
+    matrix[NRES,NY]       RESIDUAL;
+    real                  H[NY];
+
+}
+
+transformed data {
+    int<lower = 0> NMIS;
+    real MU[NY];
+    real SIGMA[NY];
+
+    NMIS = NY - NOBS;
+    for (i in 1:NY) {
+        SIGMA[i] = COEF[i, 1];
+        MU[i]    = COEF[i, 2];
+        //covariates
+        for (k in 1:NX) {
+            MU[i] = MU[i] + X[k] * COEF[i, 3+k];
+        }
+    }
+}
+
+parameters{
+    vector[NMIS] YMIS;
+}
+
+model {
+    YMIS ~ cond(YOBS, COEF, NY, MU, SIGMA, IMIS, INX, ASSUMENORMAL, NRES, RESIDUAL, H);
+}
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org31ad085" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org31ad085">Challenge</h3>
+<ul>
+<li>Difficult to share the code with others  
+<ul>
+<li>No documentation</li>
+<li>No guidance</li>
+<li>Complicated configuration
+<ul>
+<li>Need to know STAN</li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org0fdab9d" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org0fdab9d">R package</h3>
+<ul>
+<li>Re-Organize the functions</li>
+<li>Add detailed documentation</li>
+<li>Incorporate the C code</li>
+<li>Incorporate the STAN code</li>
+<li>Provide examples</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org60d11fd" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org60d11fd">Development</h3>
+<div class="outline-text-3" id="text-org60d11fd">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgfce52e1" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h4 id="orgfce52e1">Re-Organized Code</h4>
+
+<div class="figure">
+<p><img src="./images/idem_scheme.png" alt="idem_scheme.png" width="600" />
+</p>
+</div>
+
+</section>
+<section  data-background="./images/missing-people-light.png" data-background-repeat="t">
+
+<div class="org-src-container">
+
+<pre><code class="R" >#' Treatment effect estimation
+#'
+#' Estimate treatment effect and median of the composite endpoint from using
+#' imputed data
+#'
+#' @inheritParams imPlotCompleters
+#' @inheritParams imPlotImputed
+#'
+#' @param quantiles Quantiles of the composite endpoint to be reported
+#'
+#' @param ... Options for ranking subjects using the composite endpoint
+#' \describe{
+#' \item{cut.z}{Clinically meaningful difference in the functional outcome}
+#' \item{cut.surv}{Clinically meaningful difference in survival time}}
+#'
+#' @return A class \code{IDEM.RST} list contains
+#' \describe{
+#' \item{list.var}{List of parameters}
+#' \item{theta}{A dataset with columns \code{Delta0}, \code{Delta1}, \eqn{\hat{\theta}}}
+#' \item{quantiles}{ A dataset with columns \code{Delta}, \code{Trt}, \code{Quantiles}}
+#' \item{survivor}{A dataset for survivors with columns \code{Delta0}, \code{Delta1}, \code{Mean0},
+#' \code{Mean1}, \code{Diff}}}
+#'
+#' @examples
+#' \dontrun{
+#' lst.var <- list(trt="TRT", surv="SURV", outcome=c("Y1","Y2"), y0=NULL,
+#'                 endp=c("Y2"), unitTime="days",
+#'                 trt.label = c("UC+SBT", "SAT+SBT"),
+#'                 cov=c("AGE"), endfml="Y2", duration=365, bounds=c(0,100));
+#' rst.fit <- imFit(abc, lst.var);
+#' rst.imp <- imImpAll(abc, rst.fit, lst.var, deltas=c(-0.25,0,0.25),
+#'                     normal=TRUE, iter=300, n.imp=2, thin=10, p.scale=10);
+#' rst.est <- imEstimate(rst.imp, quantiles=c(0.25,0.5,0.75));}
+#'
+#' @export
+#'
+imEstimate <- function(imp.rst,
+                       quantiles=0.5,
+                       ...) {
+
+    if (is.null(imp.rst))
+        return(NULL);
+
+    stopifnot(any(class(imp.rst) == get.const("IMP.CLASS")));
+
+    lst.var  <- imp.rst$lst.var;
+    imp.data <- imp.rst$complete;
+    deltas   <- imp.rst$deltas;
+    n.imp    <- imp.rst$n.imp;
+
+    vtrt     <- lst.var$trt;
+    duration <- lst.var$duration;
+    vsurv    <- lst.var$surv;
+
+    ##trt arms
+    atrt <- sort(unique(imp.data[, vtrt]));
+
+    ##not imputed subjects
+    sub.noimp   <- imp.data[is.na(imp.data$IMP),,drop=FALSE];
+    ready.noimp <- get.data.ready(sub.noimp, lst.var, atrt);
+
+    rst.median   <- NULL;
+    rst.rank     <- NULL;
+    for (i in 1:n.imp) {
+        tmp.lst <- rep(list(NULL), length(deltas));
+        for (j in 1:length(deltas)) {
+            cur.data     <- subset(imp.data, imp.data$DELTA == deltas[j] & imp.data$IMP == i);
+            cur.ready    <- get.data.ready(cur.data, lst.var, atrt);
+            tmp.lst[[j]] <- rep(list(NULL), length(atrt));
+
+            for (k in 1:length(atrt)) {
+                tmp.lst[[j]][[k]] <- rbind(ready.noimp[[k]], cur.ready[[k]]);
+                c.med             <- get.median(tmp.lst[[j]][[k]], duration, quantiles=quantiles, ...);
+                rst.median        <- rbind(rst.median,
+                                           cbind(i, deltas[j], atrt[k], c.med));
+            }
+        }
+
+        for (t1 in 1:length(deltas)) {
+            for (t2 in 1:length(deltas)) {
+                cur.rank <- c.rankall(tmp.lst[[t1]][[1]],
+                                      tmp.lst[[t2]][[2]],
+                                      duration, ...);
+                rst.rank <- rbind(rst.rank,
+                                  c(i, deltas[t1], deltas[t2], cur.rank));
+            }
+        }
+    }
+
+    colnames(rst.median) <- c("Imputation", "Delta", "TRT", "Q", "QuantSurv", "QuantY");
+    colnames(rst.rank)   <- c("Imputation", "Delta0", "Delta1", "Theta");
+
+    ##median of median
+    dfmedian       <- data.frame(rst.median);
+    dfmedian$Quant <- get.comp(dfmedian$QuantY, dfmedian$QuantSurv, lst.var$duration);
+    dfmedian       <- sqldf('select * from dfmedian order by Delta, Trt, Q, Quant');
+    inx.median     <- ceiling(n.imp/2);
+    median.median  <- dfmedian[seq(inx.median, nrow(dfmedian), by=n.imp),
+                               c("Delta", "TRT", "Q", "QuantY", "QuantSurv")];
+
+    inx.2 <- which(median.median$QuantSurv <= lst.var$duration);
+    if (length(inx.2) > 0) {
+        median.median[inx.2,  "QuantY"]    <- NA;
+        median.median[-inx.2, "QuantSurv"] <- NA;
+    }
+
+    ##average rank
+    dfrank  <- data.frame(rst.rank);
+    avg.rank <- sqldf('select Delta0, Delta1, avg(Theta) as Theta
+                       from dfrank group by Delta1, Delta0');
+
+    ##survivor functional means
+    dalive       <- imp.data[imp.data[,vsurv] > duration, , drop=FALSE];
+    rst.survivor <- NULL;
+    if (nrow(dalive) > 0) {
+        ##there exist survivors
+        endp    <- get.const("TXT.ENDP");
+        txt.sql <- paste("select delta, trt, avg(endp) as Mean",
+                         "from (select distinct delta, ", vtrt, " as trt, ID,",
+                         "avg(", endp, ") as endp",
+                         "from dalive group by delta, ID) group by delta, trt",
+                         sep=" ");
+        survtrt    <- sqldf(txt.sql);
+        survtrt.t0 <- survtrt[seq(1, nrow(survtrt)-1, 2), c("delta", "Mean")];
+        survtrt.t1 <- survtrt[seq(2, nrow(survtrt), 2), c("delta", "Mean")];
+        ndelta     <- nrow(survtrt.t0);
+        rst.survivor <- cbind(survtrt.t0[ rep(1:ndelta, each = ndelta),],
+                              survtrt.t1[ rep(1:ndelta, ndelta),]);
+
+        colnames(rst.survivor) <- c("Delta0", "Mean0", "Delta1", "Mean1");
+        rst.survivor <- data.frame(rst.survivor);
+        rst.survivor$Diff <- rst.survivor$Mean1 - rst.survivor$Mean0;
+    }
+
+    rst <- list(lst.var=lst.var,
+                quantiles=median.median,
+                theta=avg.rank,
+                survivor=rst.survivor,
+                raw.theta=rst.rank,
+                raw.quantiles=rst.median);
+
+    class(rst) <- get.const("RST.CLASS");
+    rst
+}
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org1bf0956" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h4 id="org1bf0956">Incorporate External Code</h4>
+
+<div class="figure">
+<p><img src="./images/rpkg_src.png" alt="rpkg_src.png" width="500" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org1141963" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org1141963">Final Product</h3>
+<ul>
+<li>A single <code>tar</code> file</li>
+<li>Can be download and installed from online for 
+<ul>
+<li>32-bit Windows</li>
+<li>64-bit Windows</li>
+<li>Mac OS</li>
+<li>Unix</li>
+
+</ul></li>
+<li>With detailed <a href="https://cran.r-project.org/web/packages/idem/idem.pdf">help file</a></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org12ad537" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org12ad537">Script Mode Demo</h3>
+<div class="org-src-container">
+
+<pre><code class="R" >install.packages("idem");
+require(idem);
+head(abc);
+help("idem-parameters", package=idem);
+lst.var <- list(trt = "TRT", surv = "SURV", outcome = c("Y1","Y2"),
+                y0 = NULL, endp = c("Y2"), unitTime = "days",
+                trt.label = c("UC+SBT", "SAT+SBT"), cov = c("AGE"), endfml = "Y2",
+                duration = 365, bounds = c(0,100));
+is.null(imChkPars(abc, lst.var));
+imMisTable(abc, lst.var);
+imPlotCompleters(abc, lst.var);
+imPlotMisPattern(abc, lst.var);
+imPlotSurv(abc, lst.var);
+rst.fit <- imFitModel(data.all = abc, lst.var = lst.var);
+rst.mixing <- imImpSingle(abc[1,], rst.fit,
+                          chains = 4, iter = 2000, warmup = 1000);
+rst.imp <- imImpAll(abc, rst.fit, deltas = seq(-0.2,0.2,0.05),
+                    n.imp = 5, normal = TRUE, chains = 4, iter = 5000, warmup = 1000);
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org4337fa6" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h2 id="org4337fa6">User-Friendly Software</h2>
+<div class="outline-text-2" id="text-org4337fa6">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgf45fe3d" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgf45fe3d">Graphical User Interface</h3>
+<ul>
+<li>Many options</li>
+<li>Web-Based GUI is platform independent</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgc893421" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgc893421">Shiny</h3>
+<ul>
+<li>Allow statisticians to develop web pages without knowledge of HTML, Java
+Script, CSS, etc.</li>
+<li>Allow users to fully use existing statistical code</li>
+<li>Optimized for computation efficiency</li>
+<li>Ideal for interactive applications</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org0e16220" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org0e16220">Plan</h3>
+<ul>
+<li>Build a web application based on the R package</li>
+<li>Develop web pages and server files</li>
+<li>Deploy the application</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgd384dcb" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgd384dcb">Web Pages</h3>
+<div class="org-src-container">
+
+<pre><code class="R" >list(
+    msg.box("On this page, you will specify inputs for the imputation and estimation procedures."),
+    wellPanel(h4("General Imputation Settings"),
+              fluidRow(
+                  column(3,
+                         h6("Number of imputed datasets"),
+                         sliderInput("inNImp", label = "", value=10, min=1, max=20, step=1),
+                         h6("Normality assumption"),
+                         radioButtons(inputId="inNorm", label="", c("Yes"=1, "No"=0))
+                         ),
+                  column(3,
+                         h6("Number of bootstrap samples"),
+                         sliderInput(inputId = "inNbs", label = "",
+                                     value = 100, min = 5, max = 1000, step=1),
+                         h6("Random seed"),
+                         numericInput(inputId="inSeed", label="", value=0, min=0)),
+                  column(3,
+                         h6("Number of Cores (Parallel Bootstrap)"),
+                         sliderInput("inNcores", label = "", value = 1, min = 1,
+                                     max = (parallel::detectCores()-1), step = 1))
+              )),
+    wellPanel(
+        h4("MCMC Paramters"),
+        msg.box("Specify parameters for Bayesian posterior sampling. The target metropolis
+                      acceptance rate and initial step-size are options for advanced users to
+                      control STAN sampler's behavior. "),
+        fluidRow(
+            column(3,
+                   h6("Number of iterations"),
+                   sliderInput(inputId = "mcmciter", label = "",
+                               value = 2000, min = 200, max = 20000, step=100),
+                   h6("Number of burn-in"),
+                   sliderInput("mcmcburnin", label = "", value=1000, min=100, max=20000, step=100)
+                   ),
+            column(3,
+                   h6("Number of thinning"),
+                   sliderInput(inputId = "mcmcthin", label = "", value=2, min=1, max=50, step=1),
+                   h6("Number of chains"),
+                   sliderInput("mcmcchain", label = "", value=4, min=2, max=10, step=1)
+                   ),
+            column(3,
+                   h6("Target Metropolis Acceptance Rate"),
+                   sliderInput("mcmcdelta", label = "", value=0.95, min=0.05, max=1, step=0.05),
+                   h6("Initial Step-size"),
+                   sliderInput("mcmcstepsize", label = "", value=1, min=0.05, max=5, step=0.05)
+                   ##h6("Algorithm"),
+                   ##radioButtons('mcmcalg', '', c('NUTS', 'HMC', "Fixed_param"))
+                   ))),
+    wellPanel(h4("Sensitivity Parameters and Additional Quantile Output"),
+              fluidRow(
+                  column(3,
+                         h6("Imputation sensitivity parameters (separate by comma).
+                              Default values set such that the range of the sensitivity
+                              parameters is equal to one-fourth standard deviation of
+                              the distriubtion of functional endpoints among subjects
+                              who do not require their data to be imputed."),
+                         textInput("inSensp", label="", value = get.sd.endp(outVar='ImpSens'))),
+                  column(3,
+                         h6("The median of the composite endpoint for each treatment
+                              will be computed. Below enter additional percentiles of
+                              the composite variable you would like to obtain."),
+                         textInput("inExtras", label="", value=c("25,75"))),
+                  column(3,
+                         h6('SACE Sensitivity Parameter (separate by comma,
+                              values <= 0 are valid). Default values set such that
+                              the range of the sensitivity parameter ranges from 0 to
+                              minus one-half standard deviation of the distribution of
+                              functional endpoints among subjects who do not require
+                              their data to be imputed.'),
+                         textInput("inSACE", label="", value=get.sd.endp(outVar='SACE')))
+              )),
+    wellPanel(
+        h4("Convergence Checking"),
+        msg.box("Randomly select a subject and check the MCMC sampling convergence"),
+        actionButton("btnConverge", "Check Convergence", style="info"),
+        uiOutput('uiImpConv')
+    )
+);
+
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org0d69079" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org0d69079">Server files</h3>
+<div class="org-src-container">
+
+<pre><code class="R" >output$outTblBootQuantiles <- renderTable({
+    if (0 == input$btnBoot)
+        return(NULL);
+    rst <- get.rst.overall();
+
+    rst$quantiles;
+
+}, include.rownames=TRUE,
+caption = 'Table: Quantiles of Compositve Variable',
+caption.placement = getOption("xtable.caption.placement", "top"),
+caption.width = getOption("xtable.caption.width", NULL));
+
+## Contour plots
+output$outBootContourRank <- renderPlot({
+    if (0 == input$btnBoot)
+        return(NULL);
+    rst <- get.rst.overall();
+    imPlotContour(rst, plot.title="");
+},
+width=500,
+height=500,
+bg="transparent");
+
+##--------------------------------------
+##----------Report----------------------
+##--------------------------------------
+output$uiReport <- renderUI({
+    if (is.null(get.data())) {
+        msg.box("Please upload data first.", "warning");
+    } else if (-1 == userLog$model) {
+        msg.box("Please validate model first.", "warning");
+    } else {
+        wellPanel(h4('Download the analysis report'),
+                  radioButtons('format', '', c('PDF', 'HTML', 'Word')),
+                  downloadButton('btnDload'))
+    }
+})
+
+output$btnDload <- downloadHandler(
+    filename=function() {
+    paste('report_',
+          format(Sys.time(), "%m%d%Y%H%M%S"),
+          '.',
+          switch(input$format,
+                 PDF = 'pdf',
+                 HTML = 'html',
+                 Word = 'docx'
+                 ),
+          sep="")
+},
+
+content=function(file) {
+    out <- rmarkdown::render('report/report.Rmd',
+                             switch(input$format,
+                                    PDF  = rmarkdown::pdf_document(),
+                                    HTML = rmarkdown::html_document(),
+                                    Word = rmarkdown::word_document()
+                                    ));
+
+    bytes <- readBin(out, "raw", file.info(out)$size);
+    writeBin(bytes, file);
+})
+
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgff6c58a" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="orgff6c58a">Demo</h3>
+<ul>
+<li><a href="https://olssol.shinyapps.io/idem/">https://olssol.shinyapps.io/idem/</a></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org76469a5" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org76469a5">Appendix</h3>
+<ul>
+<li>Demo of a spatial software <a href="http://olssol2.shinyapps.io/sapma">http://olssol2.shinyapps.io/sapma</a></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org1027a1d" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h2 id="org1027a1d">Summary</h2>
+<div class="outline-text-2" id="text-org1027a1d">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org60c837c" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h3 id="org60c837c">TPLC of statistical research</h3>
+
+<div class="figure">
+<p><img src="./images/softwarescheme.png" alt="softwarescheme.png" width="800" />   
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org97fa788" data-background="./images/missing-people-light.png" data-background-repeat="t">
+<h2 id="org97fa788">The end</h2>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: false,
+rollingLinks: true,
+keyboard: true,
+overview: true,
+margin: 0.10,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'convex', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }]
+});
+</script>
+</body>
+</html>
