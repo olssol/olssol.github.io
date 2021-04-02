@@ -2,20 +2,20 @@
 #
 
 # Site settings
-title: OLSSOL
+title: SGSC
 description: |
-  Objective Learning with Statistical Solutions
-owner: OLSSOL # or company name
+  Science Gateway Software & Consultation
+owner: SGSC # or company name
 first_published: 2017 # if migrating another site, the year of your first publish
-email: ds@olssol.com
+email: consult@gateofsci.com
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://olssol.github.io" # the base hostname & protocol for your site
 social:
-  twitter: https://twitter.com/<username>
-  github: https://github.com/<username>
-  linkedin-square: https://linkedin.com/in/<username>
-  facebook-official: https://facebook.com/<username>
-  google-plus-square: https://plus.google.com/u/0/+<username>
+  ## twitter: https://twitter.com/<username>
+  github: https://github.com/olssol
+  ## linkedin-square: https://linkedin.com/in/<username>
+  ## facebook-official: https://facebook.com/<username>
+  ## google-plus-square: https://plus.google.com/u/0/+<username>
   #email: /contact/
   #flickr:
   #instagram:
