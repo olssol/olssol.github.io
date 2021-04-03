@@ -3,7 +3,7 @@ title: Science
 subtitle: Gateway
 email: sgsc@gateofsci.com
 description: A professional group <br /> to support <br /> your medical product development
-baseurl: "/" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site
 author:
 street_address:  300 E Lombard St 847

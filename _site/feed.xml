@@ -3,10 +3,10 @@
   <channel>
     <title>Science</title>
     <description>A professional group &lt;br /&gt; to support &lt;br /&gt; your medical product development</description>
-    <link>http://localhost:4000//</link>
-    <atom:link href="http://localhost:4000//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 02 Apr 2021 23:54:06 -0400</pubDate>
-    <lastBuildDate>Fri, 02 Apr 2021 23:54:06 -0400</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 03 Apr 2021 00:12:42 -0400</pubDate>
+    <lastBuildDate>Sat, 03 Apr 2021 00:12:42 -0400</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
@@ -28,8 +28,8 @@ Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo m
 Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.&lt;/p&gt;
 </description>
         <pubDate>Thu, 25 Aug 2016 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000//2016/08/25/aliquam.html</link>
-        <guid isPermaLink="true">http://localhost:4000//2016/08/25/aliquam.html</guid>
+        <link>http://localhost:4000/2016/08/25/aliquam.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/08/25/aliquam.html</guid>
         
         
       </item>
@@ -53,8 +53,8 @@ Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo m
 Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.&lt;/p&gt;
 </description>
         <pubDate>Wed, 24 Aug 2016 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000//2016/08/24/tempus.html</link>
-        <guid isPermaLink="true">http://localhost:4000//2016/08/24/tempus.html</guid>
+        <link>http://localhost:4000/2016/08/24/tempus.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/08/24/tempus.html</guid>
         
         
       </item>
@@ -80,8 +80,8 @@ Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo m
 Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.&lt;/p&gt;
 </description>
         <pubDate>Tue, 23 Aug 2016 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000//2016/08/23/magna.html</link>
-        <guid isPermaLink="true">http://localhost:4000//2016/08/23/magna.html</guid>
+        <link>http://localhost:4000/2016/08/23/magna.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/08/23/magna.html</guid>
         
         
       </item>
@@ -105,8 +105,8 @@ Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo m
 Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.&lt;/p&gt;
 </description>
         <pubDate>Mon, 22 Aug 2016 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000//2016/08/22/ipsum.html</link>
-        <guid isPermaLink="true">http://localhost:4000//2016/08/22/ipsum.html</guid>
+        <link>http://localhost:4000/2016/08/22/ipsum.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/08/22/ipsum.html</guid>
         
         
       </item>
@@ -130,8 +130,8 @@ Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo m
 Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.&lt;/p&gt;
 </description>
         <pubDate>Sun, 21 Aug 2016 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000//2016/08/21/consequat.html</link>
-        <guid isPermaLink="true">http://localhost:4000//2016/08/21/consequat.html</guid>
+        <link>http://localhost:4000/2016/08/21/consequat.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/08/21/consequat.html</guid>
         
         
       </item>
@@ -155,8 +155,8 @@ Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo m
 Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.&lt;/p&gt;
 </description>
         <pubDate>Sat, 20 Aug 2016 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000//2016/08/20/etiam.html</link>
-        <guid isPermaLink="true">http://localhost:4000//2016/08/20/etiam.html</guid>
+        <link>http://localhost:4000/2016/08/20/etiam.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/08/20/etiam.html</guid>
         
         
       </item>
