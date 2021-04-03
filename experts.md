@@ -47,14 +47,12 @@ excelled in software development and database management. </p>
 
 <p>Dr. Yuan is our Chief Medical Advisor. Dr. Yuan received his Doctor of
 Medicine in Pediatric Cardiac Surgery in 2005. Before coming to the US, Dr. Yuan
-worked many years as a specialized pediatric cardiovascular surgeon and served
-as the Vice Chief of the Department of Cardiac Surgery at Beijing Children’s
-Hospital. In 2011-2012, Dr. Yuan was invited to the Children’s National Medical
-Center, Washington DC as a visiting scholar. </p>
-</div>
-</div>
-<a href="" class="image"></a>
-</section>
+worked many years as a specialized pediatric cardiovascular surgeon at Beijing
+Children’s Hospital and served as the Division Chief of the Department of
+Pediatric Cardiac Surgery at the Affiliated Hospital to Capital Institute of
+Pediatrics in Beijing. In 2011-2012, Dr. Yuan was invited to the Children's
+National Medical Center, Washington DC as a visiting scholar. </p> </div> </div>
+<a href="" class="image"></a> </section>
 
 <section>
 <div class="content">
