@@ -1,57 +1,44 @@
-# Welcome to Jekyll!
-#
+# site settings
+title: Science
+subtitle: Gateway
+email: sgsc@gateofsci.com
+description: A professional group <br /> to support <br /> your medical product development
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: # the base hostname & protocol for your site
+author:
+street_address:  300 E Lombard St 847
+city: Baltimore
+state: Maryland
+zip_code: 21202
+country: United States of America
+phone: +1 (855) 842-7511
 
-# Site settings
-title: SGSC
-description: |
-  Science Gateway Software & Consultation
-owner: SGSC # or company name
-first_published: 2017 # if migrating another site, the year of your first publish
-email: consult@gateofsci.com
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://olssol.github.io" # the base hostname & protocol for your site
-social:
-  ## twitter: https://twitter.com/<username>
-  github: https://github.com/olssol
-  ## linkedin-square: https://linkedin.com/in/<username>
-  ## facebook-official: https://facebook.com/<username>
-  ## google-plus-square: https://plus.google.com/u/0/+<username>
-  #email: /contact/
-  #flickr:
-  #instagram:
-  #youtube-square:
-  #spotify:
-  #stack-overflow:
-  #vimeo:
-  #reddit:
-  #stubleupon:
-  #delicious:
-  #pied-piper:
-  #digg:
-  #soundcloud:
-  #deviantart:
-  #angellist:
-  #tumblr-square:
-  #stackexchange:
-  #weibo:
-  #trello:
-  #foursquare:
-  #linux:
-  #bitbucket-square:
-  #vk:
-  #slack:
-  #vine:
-  #weixin:
-  #yelp:
-  #skyatlas:
-  #leanpub:
-  #connectdevelop:
-  #ils:
-  #forumbee:
-  #tripadvisor:
-  #amazon:
+# homepage tiles
+tiles-source: pages # accepts "posts" or "pages"
+tiles-count: 4
 
-# Build settings
+# social settings (key must match name of font awesome icon)
+# see https://fontawesome.com/icons?d=gallery&p=2&s=brands
+# Icons are not shown if value is empty
+# You need to restart jekyll for changes to have an effect
+socials:
+  GitHub: https://github.com/olssol
+  GitLab:
+  Google-Plus:
+  Instagram:
+  LinkedIn:
+  Twitter:
+  Facebook:
+  Slack:
+
+# build settings
 markdown: kramdown
-#sass:
-#  style: compressed
+
+sass:
+  style: compressed
+
+exclude:
+- "*.gemspec"
+- LICENSE.md
+- CONTRIBUTING.md
+- README.md
