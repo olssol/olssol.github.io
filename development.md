@@ -43,8 +43,8 @@ users seamlessly. We are here to make it happen.</p>
 <h3>Artificial Intelligence Diagnostics Devices</h3>
 </header>
 <p>We develop deep-learning neural network tools for the diagnosis and
-prediction of diseases. We have multiple ongoing projects that aim at using
-various artificial intelligence tools to early diagnose cancer or triage medical
+prediction of diseases. We have ongoing projects that aim at using
+various artificial intelligence tools to early diagnose disease or triage medical
 conditions to help emergent health-care decision-makings.</p>
 </div>
 </div>
