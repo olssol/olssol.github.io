@@ -45,7 +45,7 @@ excelled in software development and database management. </p>
 <h3>Feng Yuan, MD </h3>
 </header>
 
-<p>Dr. Yuan is our Chief Medical Advisor. Dr. Yuan received his Doctor of
+<p>Dr. Yuan is our chief medical consultant. Dr. Yuan received his Doctor of
 Medicine in Pediatric Cardiac Surgery in 2005. Before coming to the US, Dr. Yuan
 worked many years as a specialized pediatric cardiovascular surgeon at Beijing
 Children’s Hospital and served as the Division Chief of the Department of
@@ -61,7 +61,7 @@ National Medical Center, Washington DC as a visiting scholar. </p> </div> </div>
 <h3>Zhong Wang, PhD </h3>
 </header>
 
-<p>Dr. Wang is our Chief IT Advisor. Dr. Wang received his PhD in Computer
+<p>Dr. Wang is our chief IT consultant. Dr. Wang received his PhD in Computer
 Science in 2000. Dr. Wang was a pioneer in the development of database
 management systems and decision-making support systems. In the last decade, Dr.
 Wang has extended his research to the field of Bioinformatics and had multiple

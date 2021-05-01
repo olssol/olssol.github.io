@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Science</title>
+    <title>SGSC</title>
     <description>A professional group &lt;br /&gt; to support &lt;br /&gt; your medical product development</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 03 Apr 2021 08:54:36 -0400</pubDate>
-    <lastBuildDate>Sat, 03 Apr 2021 08:54:36 -0400</lastBuildDate>
+    <pubDate>Sun, 04 Apr 2021 20:16:36 -0400</pubDate>
+    <lastBuildDate>Sun, 04 Apr 2021 20:16:36 -0400</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
